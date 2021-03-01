@@ -3,24 +3,21 @@ import * as yup from 'yup'
 
 const INITIAL_FORM_VALUES = {
     username: '',
-    phoneNumber: '',
     password: ''
 }
 
 const INITIAL_FORM_ERRORS = {
     username: '',
-    phoneNumber: '',
     password: ''
 }
 
 // Form schema
 const schema = yup.object().shape({
     username: yup.string().required(),
-    phoneNumber: yup.string().required(),
     password: yup.string().required()
 })
 
-export default function UserForm(props) {
+export default function LoginForm(props) {
     const { submit } = props
     const [values, setValues] = useState(INITIAL_FORM_VALUES)
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
@@ -70,7 +67,6 @@ export default function UserForm(props) {
 			<h2>submit</h2>
 			<div className='errors'>
 				<div>{errors.username}</div>
-				<div>{errors.phoneNumber}</div>
 				<div>{errors.password}</div>
 			</div>
 			<button disabled={disabled}>submit</button>
@@ -83,14 +79,6 @@ export default function UserForm(props) {
 				onChange={onChange}
 				name='username'
 				type='text'
-				/>
-			</label>
-			<label>Phone Number:&nbsp;
-				<input
-				value={values.phoneNumber}
-				onChange={onChange}
-				name='phoneNumber'
-				type='tel'
 				/>
 			</label>
 			<label>Password:&nbsp;
