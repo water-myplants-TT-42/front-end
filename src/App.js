@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import Home from './components/Home'
 import UserForm from './components/UserForm'
+import LoginForm from './components/LoginForm'
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           <UserForm />
         </Route>
         <Route path="/login">
-          <UserForm />
+          <LoginForm />
         </Route>
         <Route path="/" exact>
           <Home />
