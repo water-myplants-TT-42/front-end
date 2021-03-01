@@ -1,4 +1,6 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
 const INITIAL_FORM_VALUES = {
@@ -25,6 +27,7 @@ export default function UserForm(props) {
     const [values, setValues] = useState(INITIAL_FORM_VALUES)
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
     const [disabled, setDisabled] = useState(true)
+    const { push } = useHistory();
 
     const onSubmit = evt => {
         evt.preventDefault()
@@ -33,6 +36,14 @@ export default function UserForm(props) {
                 submit(values)
                 setValues(INITIAL_FORM_VALUES)
                 setErrors(INITIAL_FORM_ERRORS)
+                axios
+                .post('', values)
+                .then(() => {
+                    push('/login')
+                })
+                .catch(err => {
+                    console.log('signup failure', err)
+                })
             })
             .catch(err => {
                 console.error(err)
