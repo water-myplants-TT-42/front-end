@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 const INITIAL_FORM_VALUES = {
@@ -30,18 +29,9 @@ export default function LoginForm(props) {
         evt.preventDefault()
         schema.validate(values)
             .then(_ => {
-                submit(values)
+                submit(values, push)
                 setValues(INITIAL_FORM_VALUES)
                 setErrors(INITIAL_FORM_ERRORS)
-                axios
-                .post('', values)
-                .then(res => {
-                    localStorage.setItem('token', res.data.payload)
-                    push('/');
-                })
-                .catch(err => {
-                    console.log('login failure', err);
-                })
             })
             .catch(err => {
                 console.error(err)

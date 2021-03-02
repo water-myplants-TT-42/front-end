@@ -7,6 +7,6 @@ export const axiosWithAuth = () => {
         headers: {
             Authorization: token,
         },
-        baseUrl: ''
+        baseUrl: 'https://water-plants-app-tt42.herokuapp.com/'
     })
 }
