@@ -3,10 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 
-const INITIAL_FORM_VALUES = {
-    phoneNumber: '',
-    password: ''
-}
+
 
 const INITIAL_FORM_ERRORS = {
     phoneNumber: '',
@@ -21,7 +18,7 @@ const schema = yup.object().shape({
 
 export default function EditUserForm(props) {
     const { submit } = props
-    const [values, setValues] = useState(INITIAL_FORM_VALUES)
+    const [values, setValues] = useState(props)
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
     const [disabled, setDisabled] = useState(true)
     const { push } = useHistory();
@@ -31,7 +28,7 @@ export default function EditUserForm(props) {
         schema.validate(values)
             .then(_ => {
                 submit(values)
-                setValues(INITIAL_FORM_VALUES)
+                setValues(props)
                 setErrors(INITIAL_FORM_ERRORS)
                 axios
                 .post('', values)
