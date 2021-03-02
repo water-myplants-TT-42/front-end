@@ -1,5 +1,5 @@
 import axios from 'axios';
-import axiosWithAuth from './axiosWithAuth';
+import { axiosWithAuth } from './axiosWithAuth';
 
 export const signupRequest = (values, push) => {
   return axios
