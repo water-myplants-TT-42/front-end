@@ -1,13 +1,14 @@
-import React from 'react'
-import { Link, Route, Switch } from 'react-router-dom'
+import React from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 
-import Home from './components/Home'
-import UserForm from './components/UserForm'
-import EditUserForm from './components/EditUserForm'
-import LoginForm from './components/LoginForm'
-import PlantForm from './components/PlantForm'
-import PlantList from './components/PlantList'
-import Plant from './components/Plant'
+import Home from './components/Home';
+import UserForm from './components/UserForm';
+import EditUserForm from './components/EditUserForm';
+import LoginForm from './components/LoginForm';
+import PlantForm from './components/PlantForm';
+import PlantList from './components/PlantList';
+import Plant from './components/Plant';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -29,25 +30,17 @@ function App() {
         </div>
 
       <Switch>
-        <Route path="/plantlist">
-          <PlantList />
-        </Route>
-        <Route path="/plant-list/:id">
-          <Plant />
-        </Route>
-        <Route path="/plantform">
-          <PlantForm />
-        </Route>
-        <Route path="/edituser">
-          <EditUserForm />
-        </Route>
+        <PrivateRoute path="/plantlist" component={PlantList} />
+        <PrivateRoute path="/plant-list/:id" component={Plant} />
+        <PrivateRoute path="/plantform" component={PlantForm} />
+        <PrivateRoute path="/edituser" component={EditUserForm} />
         <Route path="/signup">
           <UserForm />
         </Route>
         <Route path="/login">
           <LoginForm />
         </Route>
-        <Route path="/" exact>
+        <Route exact path="/">
           <Home />
         </Route>
       </Switch>
