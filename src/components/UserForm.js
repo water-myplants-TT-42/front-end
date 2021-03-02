@@ -33,12 +33,13 @@ export default function UserForm(props) {
         evt.preventDefault()
         schema.validate(values)
             .then(_ => {
-                submit(values)
+                // submit(values)
                 setValues(INITIAL_FORM_VALUES)
                 setErrors(INITIAL_FORM_ERRORS)
                 axios
-                .post('', values)
-                .then(() => {
+                .post('https://water-plants-app-tt42.herokuapp.com/api/users/register', values)
+                .then(res => {
+                    console.log(res)
                     push('/login')
                 })
                 .catch(err => {

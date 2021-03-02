@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-​
+
 // dummy data for testing display, delete when get from backend is implemented
 // dummy data means all /plant-list/:plantID links will display the same data
 const dummyData = {
@@ -9,17 +9,17 @@ const dummyData = {
   species: 'D. trifasciata',
   h2oFrequency: '1 time/week',
 }
-​
+
 export default function Plant(props) {
   const { plantData, deletePlant } = props
   const history = useHistory()
   // delete useState when connected to backend/pass plant itself as prop in place of plantData
   const [plant, setPlant] = useState(dummyData)
-​
+
   const routeToEdit = _ => {
-    history.push('')         // Insert edit form path inside quotes
+    history.push('/plantform')         // Insert edit form path inside quotes
   }
-​
+
   return (
     <div className='plant-wrapper'>
       {JSON.stringify(plant)}

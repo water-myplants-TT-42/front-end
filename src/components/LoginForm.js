@@ -30,13 +30,14 @@ export default function LoginForm(props) {
         evt.preventDefault()
         schema.validate(values)
             .then(_ => {
-                submit(values)
+                // submit(values)
                 setValues(INITIAL_FORM_VALUES)
                 setErrors(INITIAL_FORM_ERRORS)
                 axios
-                .post('', values)
+                .post('https://water-plants-app-tt42.herokuapp.com/api/users/login', values)
                 .then(res => {
-                    localStorage.setItem('token', res.data.payload)
+                    console.log(res)
+                    localStorage.setItem('token', res.data.token)
                     push('/');
                 })
                 .catch(err => {

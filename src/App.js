@@ -7,6 +7,7 @@ import EditUserForm from './components/EditUserForm'
 import LoginForm from './components/LoginForm'
 import PlantForm from './components/PlantForm'
 import PlantList from './components/PlantList'
+import Plant from './components/Plant'
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
       <Switch>
         <Route path="/plantlist">
           <PlantList />
+        </Route>
+        <Route path="/plant-list/:id">
+          <Plant />
         </Route>
         <Route path="/plantform">
           <PlantForm />
