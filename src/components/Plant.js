@@ -28,7 +28,7 @@ export default function Plant(props) {
       <p>Water {plant.h2oFrequency}</p>
       <button 
         className='delete-button'
-        onClick={deletePlant(plant.id)}
+        // onClick={deletePlant(plant.id)}
         >Delete Plant
       </button>
       {/* Delete button needs onClick functionality...modal window to confirm?? */}
