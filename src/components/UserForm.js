@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
@@ -33,18 +32,10 @@ export default function UserForm(props) {
         evt.preventDefault()
         schema.validate(values)
             .then(_ => {
-                // submit(values)
+                submit(values, push)
                 setValues(INITIAL_FORM_VALUES)
                 setErrors(INITIAL_FORM_ERRORS)
-                axios
-                .post('https://water-plants-app-tt42.herokuapp.com/api/users/register', values)
-                .then(res => {
-                    console.log(res)
-                    push('/login')
-                })
-                .catch(err => {
-                    console.log('signup failure', err)
-                })
+                
             })
             .catch(err => {
                 console.error(err)

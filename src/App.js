@@ -9,6 +9,7 @@ import PlantForm from './components/PlantForm';
 import PlantList from './components/PlantList';
 import Plant from './components/Plant';
 import PrivateRoute from './components/PrivateRoute';
+import { signupRequest, loginRequest } from './utils/requests';
 
 function App() {
   return (
@@ -35,10 +36,10 @@ function App() {
         <PrivateRoute path="/plantform" component={PlantForm} />
         <PrivateRoute path="/edituser" component={EditUserForm} />
         <Route path="/signup">
-          <UserForm />
+          <UserForm submit={signupRequest} />
         </Route>
         <Route path="/login">
-          <LoginForm />
+          <LoginForm submit={loginRequest} />
         </Route>
         <Route exact path="/">
           <Home />
