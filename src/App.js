@@ -33,7 +33,7 @@ function App() {
         <Navbar />
         <Switch>
           <PrivateRoute path="/plantlist/:id">
-            <Plant deletePlant={deletePlantRequest} plantData={plantList} />
+            <Plant deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />
           </PrivateRoute>
           <PrivateRoute path="/plantlist">
             <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />
