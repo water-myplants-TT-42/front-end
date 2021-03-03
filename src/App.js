@@ -11,6 +11,11 @@ import Plant from './components/Plant';
 import PrivateRoute from './components/PrivateRoute';
 import { signupRequest, loginRequest } from './utils/requests';
 
+// Mock Callbacks
+const deletePlantRequest = (plantId) => {
+  console.log('Tried to delete plant: ', plantId)
+}
+
 function App() {
   return (
     <div className="App">
@@ -31,8 +36,8 @@ function App() {
         </div>
 
       <Switch>
-        <PrivateRoute path="/plantlist" component={PlantList} />
-        <PrivateRoute path="/plant-list/:id" component={Plant} />
+        <PrivateRoute path="/plantlist/:id" component={() => <Plant deletePlant={deletePlantRequest} />} />
+        <PrivateRoute path="/plantlist" component={() => <PlantList deletePlant={deletePlantRequest} />} />
         <PrivateRoute path="/plantform" component={PlantForm} />
         <PrivateRoute path="/edituser" component={EditUserForm} />
         <Route path="/signup">
