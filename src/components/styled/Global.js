@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Alef', sans-serif;
     }
 
+    html { 
+    font-size: 10px; 
+    }
+
     /* Remove default padding */
     ul[class],
     ol[class] {
