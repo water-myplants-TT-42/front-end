@@ -77,6 +77,12 @@ export const Theme = {
     cardBoxShadow: `2px 2px 4px rgba(0, 0, 0, 0.25)`,
 
 
+    // Modal Constants
+    blurBackground: `rgba(242, 242, 242, .8)`,  // For the element that covers screen
+    modalSize: `25rem`,
+    modalBorder: `1px solid BDBDBD`,
+
+
     // Logo sizes
     smallLogoSize: `10rem`,
     largeLogoSize: `18.7rem`,
