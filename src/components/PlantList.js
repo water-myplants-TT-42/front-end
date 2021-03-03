@@ -12,16 +12,15 @@ export default function PlantList(props) {
     getPlantList(userID).then(res => setPlantList(res.data))
   }, [])
 
-  const onClickDelete = ({ id }) => {
-    console.log('onClickDelete', id);
-    // setToDelete({ id })
-    deletePlantRequest(id, push);
-    setPlantList(plantList.filter(plant => plant.plant_id !== id))
+  const onClickDelete = ({ id, nickname }) => {
+    console.log('onClickDelete', id, nickname);
+    setToDelete({ id, nickname })
   }
 
   const confirmDelete = () => {
     if (toDelete) {
-      deletePlant(toDelete.id);
+      deletePlantRequest(toDelete.id, push);
+      setPlantList(plantList.filter(plant => plant.plant_id !== toDelete.id))
       setToDelete(null);
     }
   }
@@ -45,7 +44,7 @@ export default function PlantList(props) {
           <p>{plant.h2oFrequency}</p>
           <button 
             className='delete-button'
-            onClick={_ => onClickDelete({ id: plant.plant_id })}
+            onClick={_ => onClickDelete({ id: plant.plant_id, nickname: plant.nickname })}
             >Delete
           </button>
           {/* Delete button needs functionality...modal window to confirm?? */}
