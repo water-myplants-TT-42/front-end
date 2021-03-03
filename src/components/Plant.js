@@ -16,8 +16,8 @@ export default function Plant(props) {
   // delete useState when connected to backend/pass plant itself as prop in place of plantData
   const [plant, setPlant] = useState(dummyData)
 
-  const routeToEdit = _ => {
-    history.push('/plantform')         // Insert edit form path inside quotes
+  const routeTo = (location) => {       // Once Plant is passed routeTo Prop from App, delete this
+    history.push(location)              // function and destructure routeTo from the props
   }
 
   return (
@@ -34,7 +34,7 @@ export default function Plant(props) {
       {/* Delete button needs onClick functionality...modal window to confirm?? */}
       <button 
         className='edit-button' 
-        onClick={routeToEdit} 
+        onClick={routeTo('/plantform')} 
         >Edit Plant
       </button>
     </div>

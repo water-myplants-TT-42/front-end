@@ -12,6 +12,11 @@ import PrivateRoute from './components/PrivateRoute';
 import { signupRequest, loginRequest } from './utils/requests';
 
 function App() {
+
+  const routeTo = (location) => {
+    history.push(location)
+  }
+
   return (
     <div className="App">
       <h1>text placeholder</h1>
@@ -33,6 +38,8 @@ function App() {
       <Switch>
         <PrivateRoute path="/plantlist" component={PlantList} />
         <PrivateRoute path="/plant-list/:id" component={Plant} />
+        {/* TODO: ^ Plant component needs prop routeTo */}
+        
         <PrivateRoute path="/plantform" component={PlantForm} />
         <PrivateRoute path="/edituser" component={EditUserForm} />
         <Route path="/signup">
@@ -42,7 +49,7 @@ function App() {
           <LoginForm submit={loginRequest} />
         </Route>
         <Route exact path="/">
-          <Home />
+          <Home routeTo={routeTo}/>
         </Route>
       </Switch>
     </div>
