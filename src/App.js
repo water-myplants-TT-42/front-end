@@ -14,7 +14,7 @@ import PlantList from './components/PlantList';
 import Plant from './components/Plant';
 import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute';
-import { signupRequest, loginRequest } from './utils/requests';
+import { signupRequest, loginRequest, editUserRequest } from './utils/requests';
 
 // Mock Callbacks
 const deletePlantRequest = (plantId) => {
@@ -33,7 +33,7 @@ function App() {
         <Navbar />
         <Switch>
           <PrivateRoute path="/plantlist/:id">
-            <Plant deletePlant={deletePlantRequest} plantData={plantList} />
+            <Plant deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />
           </PrivateRoute>
           <PrivateRoute path="/plantlist">
             <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />
@@ -42,7 +42,7 @@ function App() {
             <PlantForm userID={userID} />
           </PrivateRoute>
           <PrivateRoute path="/edituser">
-            <EditUserForm />
+            <EditUserForm submit={editUserRequest} userID={userID} />
           </PrivateRoute>
           <Route path="/signup">
             <UserForm submit={signupRequest} />
