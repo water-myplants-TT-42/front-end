@@ -32,14 +32,18 @@ function App() {
       <div className="App">
         <Navbar />
         <Switch>
-          <PrivateRoute path="/plantlist/:id" component={() => <Plant deletePlant={deletePlantRequest} />} />
-          {/* <PrivateRoute path="/plantlist" children={() => <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />} /> */}
-
+          <PrivateRoute path="/plantlist/:id">
+            <Plant deletePlant={deletePlantRequest} plantData={plantList} />
+          </PrivateRoute>
           <PrivateRoute path="/plantlist">
             <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />
           </PrivateRoute>
-          <PrivateRoute path="/plantform" component={() => <PlantForm userID={userID} />} />
-          <PrivateRoute path="/edituser" component={EditUserForm} />
+          <PrivateRoute path="/plantform">
+            <PlantForm userID={userID} />
+          </PrivateRoute>
+          <PrivateRoute path="/edituser">
+            <EditUserForm />
+          </PrivateRoute>
           <Route path="/signup">
             <UserForm submit={signupRequest} />
           </Route>

@@ -37,12 +37,12 @@ export default function PlantList(props) {
 
       />
       {plantList.map(plant => (
-        <div className="plant-card" key={plant.id}>
-          <Link to={`/plantlist/${plant.id}`}><h3>{plant.nickname}</h3></Link>
+        <div className="plant-card" key={plant.plant_id}>
+          <Link to={`/plantlist/${plant.plant_id}`}><h3>{plant.nickname}</h3></Link>
           <p>{plant.h2oFrequency}</p>
           <button 
             className='delete-button'
-            onClick={_ => onClickDelete({ id: plant.id, nickname: plant.nickname})}
+            onClick={_ => onClickDelete({ id: plant.plant_id, nickname: plant.nickname})}
             >Delete
           </button>
           {/* Delete button needs functionality...modal window to confirm?? */}

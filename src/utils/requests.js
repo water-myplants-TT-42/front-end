@@ -71,3 +71,13 @@ export const deletePlantRequest = (id, push) => {
     })
     .catch(err => console.log({err}))
 }
+
+export const getPlant = (id) => {
+  return axiosWithAuth()
+    .get(`https://water-plants-app-tt42.herokuapp.com/api/plants/${id}`)
+    .then(res => {
+      console.log("Got plant:", res)
+      return res.data
+    })
+    .catch(err => console.log({err}))
+}

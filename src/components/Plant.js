@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import DeleteModal from './DeleteModal';
+import { getPlant } from '../utils/requests';
 
 // dummy data for testing display, delete when get from backend is implemented
 // dummy data means all /plant-list/:plantID links will display the same data
@@ -12,18 +13,24 @@ const dummyData = {
 }
 
 export default function Plant(props) {
-  const { plantData, deletePlant } = props
-  const history = useHistory()
+  const { plantData, deletePlant } = props;
+  const history = useHistory();
   // delete useState when connected to backend/pass plant itself as prop in place of plantData
-  const [plant, setPlant] = useState(dummyData)
-  const [isDeleting, setIsDeleting] = useState(false)
+  const params = useParams();
+  console.log("useParams",useParams(),"params",params)
+  const [plant, setPlant] = useState(dummyData);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(()=>{
+    getPlant(params.id).then(res => setPlant(res))
+  }, [])
 
   const onClickDelete = () => {
     setIsDeleting(true)
   }
 
   const confirmDelete = () => {
-    deletePlant(plant.id)
+    deletePlant(plant.plant_id)
     setIsDeleting(false)
   }
 
@@ -43,7 +50,6 @@ export default function Plant(props) {
         confirm={confirmDelete}
         cancel={cancelDelete}
       />
-      {JSON.stringify(plant)}
       <h2>{plant.nickname}</h2>
       <p>Species: {plant.species}</p>
       <p>Water {plant.h2oFrequency}</p>
