@@ -36,7 +36,7 @@ const formSchema = yup.object().shape({
 export default function PlantForm(props) {
     const { plantToEdit, userID } = props;
     const location = useLocation();
-    const thisPlant = location.state ? location.state.plant : null;
+    const thisPlant = location.state ? location.state.plant : INITIAL_PLANT_FORM_STATE;
     const [values, setValues] = useState(thisPlant);
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS);
     const [isDisabled, setIsDisabled] = useState(true);
@@ -45,7 +45,7 @@ export default function PlantForm(props) {
     // Utility to keep number and dropbox in sync
     const [freqNumber, freqTimes] = parseFrequency(values.h2oFrequency)
 
-    const isEditing = !!thisPlant; // Coerce to boolean to check if editing
+    const isEditing = !!thisPlant.nickname.length; // Coerce to boolean to check if editing
 
     const change = (evt) => {
         const { name, value } = evt.target
