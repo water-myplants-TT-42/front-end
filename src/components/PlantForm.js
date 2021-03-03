@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
 
+import Button from './styled/Button'
+import Container from './styled/Container'
+import Form from './styled/Form'
+import TextInput from './styled/Input'
+
 const INITIAL_PLANT_FORM_STATE = {
     nickname: '',
     species: '',
@@ -58,11 +63,14 @@ export default function PlantForm(props) {
 
         yup.reach(formSchema, name)
             .validate(value)
-            .then(isValid => {
-                setIsDisabled(!isValid)
-                setErrors(INITIAL_FORM_ERRORS)
+            .then(_ => {
+                setErrors({
+                    ...errors,
+                    [name]: ''
+                })
             })
             .catch(err => {
+                setIsDisabled(true)
                 return setErrors({
                     ...errors,
                     [name]: err.errors[0]
@@ -101,15 +109,28 @@ export default function PlantForm(props) {
     })
 
     return (
-        <div>
+        <Container maxWidth="600px">
             <h2>{isEditing ? 'Edit' : 'Create'} Plant</h2>
-            <form onSubmit={submit}>
-                <label htmlFor="nickname">Nickname:{' '}</label>
-                <input id="nickname" name="nickname" value={values.nickname} onChange={change} />
-                <br />
-                <label htmlFor="species">Species:{' '}</label>
+            <Form onSubmit={submit}>
+                <TextInput 
+                    name="nickname"
+                    labelText="Nickname"
+                    onChange={change}
+                    value={values.nickname}
+                    error={errors.nickname}
+                />
+                {/* <br /> */}
+                {/* <label htmlFor="species">Species:{' '}</label>
                 <input id="species" name="species" value={values.species} onChange={change} />
-                <br />
+                <br /> */}
+
+                <TextInput 
+                    name="species"
+                    labelText="Species"
+                    onChange={change}
+                    value={values.species}
+                    error={errors.species}
+                />
                 
                 <label htmlFor="h2oNumber">Water:{' '}</label>
                 <input id="h2oNumber" name="h2oNumber" type="number" min={1} step={1} value={freqNumber} onChange={change}/>
@@ -120,8 +141,12 @@ export default function PlantForm(props) {
                     <option value="monthly">Monthly</option>
                 </select>
                 <br />
-                <button type="submit" disabled={isDisabled}>{isEditing ? 'Edit' : 'Create'} Plant</button>
-            </form>
-        </div>
+                <Button
+                    variant={!isDisabled ? 'success' : ''}
+                    type="submit" 
+                    disabled={isDisabled}>{isEditing ? 'Edit' : 'Create'} Plant
+                </Button>
+            </Form>
+        </Container>
     )
 }
