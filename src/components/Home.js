@@ -10,6 +10,7 @@ export default function Home(props) {
 
     return (
         <div>
+            {/* logo icon here */}
             <h1>Water My Plants</h1>
             <button onClick={routeTo('/login')}>Log In</button>
             <button onClick={routeTo('/signup')}>Sign Up</button>
