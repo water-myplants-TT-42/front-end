@@ -1,5 +1,9 @@
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
+import { ThemeProvider } from 'styled-components';
+import { Theme } from './components/styled/theme';
+import GlobalStyle from './components/styled/Global';
 
 import Home from './components/Home';
 import UserForm from './components/UserForm';
@@ -8,6 +12,7 @@ import LoginForm from './components/LoginForm';
 import PlantForm from './components/PlantForm';
 import PlantList from './components/PlantList';
 import Plant from './components/Plant';
+import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute';
 import { signupRequest, loginRequest } from './utils/requests';
 
@@ -18,39 +23,27 @@ const deletePlantRequest = (plantId) => {
 
 function App() {
   return (
-    <div className="App">
-      <h1>text placeholder</h1>
-        <div>
-          <h5>navbar</h5>
-          <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/signup'>Sign Up</Link></li>
-            <li><Link to='/login'>Login</Link></li>
-          </ul>
-          <br></br>
-          <ul>
-            <li><Link to='/edituser'>View/Edit User</Link></li>
-            <li><Link to='/plantform'>Create Plant</Link></li>
-            <li><Link to='/plantlist'>View Plant List</Link></li>
-          </ul>
-        </div>
-
-      <Switch>
-        <PrivateRoute path="/plantlist/:id" component={() => <Plant deletePlant={deletePlantRequest} />} />
-        <PrivateRoute path="/plantlist" component={() => <PlantList deletePlant={deletePlantRequest} />} />
-        <PrivateRoute path="/plantform" component={PlantForm} />
-        <PrivateRoute path="/edituser" component={EditUserForm} />
-        <Route path="/signup">
-          <UserForm submit={signupRequest} />
-        </Route>
-        <Route path="/login">
-          <LoginForm submit={loginRequest} />
-        </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </div>
+    <ThemeProvider theme={Theme}>
+      <GlobalStyle />
+      <div className="App">
+        <Navbar />
+        <Switch>
+          <PrivateRoute path="/plantlist/:id" component={() => <Plant deletePlant={deletePlantRequest} />} />
+          <PrivateRoute path="/plantlist" component={() => <PlantList deletePlant={deletePlantRequest} />} />
+          <PrivateRoute path="/plantform" component={PlantForm} />
+          <PrivateRoute path="/edituser" component={EditUserForm} />
+          <Route path="/signup">
+            <UserForm submit={signupRequest} />
+          </Route>
+          <Route path="/login">
+            <LoginForm submit={loginRequest} />
+          </Route>
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </ThemeProvider>
   );
 }
 
