@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import { getPlantList } from '../utils/requests';
 import DeleteModal from './DeleteModal';
 
 // dummy data for testing display, delete when get from backend is implemented
@@ -26,11 +26,15 @@ const dummyList = [
 ]
 
 export default function PlantList(props) {
-  const { plantList , deletePlant } = props;
+  const { userID, plantList, setPlantList, deletePlant } = props;
   console.log('plantlist props', props)
   // change useState to initialize plantList when connected to backend
   const [plants, setPlants] = useState(dummyList)
   const [toDelete, setToDelete] = useState(null)
+
+  useEffect(()=>{
+    getPlantList(userID, setPlantList)
+  },[userID, setPlantList])
 
   const onClickDelete = ({ id, nickname }) => {
     console.log('onClickDelete', id, nickname)
@@ -57,7 +61,7 @@ export default function PlantList(props) {
         text={toDelete ? `Delete ${toDelete.nickname}` : 'Delete this plant?'}
 
       />
-      {plants.map(plant => (
+      {plantList.map(plant => (
         <div className="plant-card" key={plant.id}>
           <Link to={`/plantlist/${plant.id}`}><h3>{plant.nickname}</h3></Link>
           <p>{plant.h2oFrequency}</p>
