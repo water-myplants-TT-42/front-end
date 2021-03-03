@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 })
 
 export default function LoginForm(props) {
-    const { submit } = props
+    const { submit, setUserID } = props
     const [values, setValues] = useState(INITIAL_FORM_VALUES)
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
     const [disabled, setDisabled] = useState(true)
@@ -29,7 +29,7 @@ export default function LoginForm(props) {
         evt.preventDefault()
         schema.validate(values)
             .then(_ => {
-                submit(values, push)
+                submit(values, push, setUserID);
                 setValues(INITIAL_FORM_VALUES)
                 setErrors(INITIAL_FORM_ERRORS)
             })

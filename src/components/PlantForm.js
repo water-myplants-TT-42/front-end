@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as yup from 'yup'
+import { addPlantRequest } from '../utils/requests';
 
 import Button from './styled/Button'
 import Container from './styled/Container'
@@ -9,7 +11,8 @@ import TextInput from './styled/Input'
 const INITIAL_PLANT_FORM_STATE = {
     nickname: '',
     species: '',
-    h2oFrequency: '1 daily'
+    h2oFrequency: '1 daily',
+    user_id: ''
 }
 
 const INITIAL_FORM_ERRORS = {
@@ -31,10 +34,11 @@ const formSchema = yup.object().shape({
 })
 
 export default function PlantForm(props) {
-    const { plantToEdit } = props
-    const [values, setValues] = useState(INITIAL_PLANT_FORM_STATE)
-    const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
-    const [isDisabled, setIsDisabled] = useState(true)
+    const { plantToEdit, userID } = props;
+    const [values, setValues] = useState(INITIAL_PLANT_FORM_STATE);
+    const [errors, setErrors] = useState(INITIAL_FORM_ERRORS);
+    const [isDisabled, setIsDisabled] = useState(true);
+    const { push } = useHistory();
 
     // Utility to keep number and dropbox in sync
     const [freqNumber, freqTimes] = parseFrequency(values.h2oFrequency)
@@ -96,7 +100,10 @@ export default function PlantForm(props) {
                 if (isEditing) {
                     console.log('EDIT', values)
                 } else {
-                    console.log('CREATE', values)
+                    console.log("userID:", userID);
+                    const userValues = {...values, user_id:userID};
+                    console.log('CREATE', userValues);
+                    addPlantRequest(userValues, push);
                 }
             })
             .catch(err => err)

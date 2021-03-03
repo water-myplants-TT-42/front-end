@@ -12,11 +12,12 @@ export const signupRequest = (values, push) => {
     })
 }
 
-export const loginRequest = (values, push) => {
+export const loginRequest = (values, push, setUserID) => {
   return axios
     .post('https://water-plants-app-tt42.herokuapp.com/api/users/login', values)
     .then(res => {
-        localStorage.setItem('token', res.data.token)
+        setUserID(res.data.user_id);
+        localStorage.setItem('token', res.data.token);
         push('/plantlist');
     })
     .catch(err => {
@@ -24,9 +25,20 @@ export const loginRequest = (values, push) => {
     })
 }
 
+export const getPlantList = (userID) => {
+  return axiosWithAuth()
+    .get(`https://water-plants-app-tt42.herokuapp.com/api/users/${userID}/plants`)
+    .then(res => {
+      console.log(res);
+      return res
+      // setPlantList(res.data);
+    })
+    .catch(err => console.log({err}))
+}
+
 export const addPlantRequest = (values, push) => {
   return axiosWithAuth()
-    .post('/api/plants', values)
+    .post('https://water-plants-app-tt42.herokuapp.com/api/plants', values)
     .then(res => {
       push('/plantlist')
     })
@@ -56,6 +68,16 @@ export const deletePlantRequest = (id, push) => {
     .delete(`api/plants/${id}`)
     .then(() => {
       push('/plantlist')
+    })
+    .catch(err => console.log({err}))
+}
+
+export const getPlant = (id) => {
+  return axiosWithAuth()
+    .get(`https://water-plants-app-tt42.herokuapp.com/api/plants/${id}`)
+    .then(res => {
+      console.log("Got plant:", res)
+      return res.data
     })
     .catch(err => console.log({err}))
 }

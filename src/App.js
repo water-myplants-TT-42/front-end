@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
@@ -22,21 +22,33 @@ const deletePlantRequest = (plantId) => {
 }
 
 function App() {
+  const [plantList, setPlantList] = useState([]);
+  const [userID, setUserID] = useState(null);
+  console.log('userID:', userID);
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <div className="App">
         <Navbar />
         <Switch>
-          <PrivateRoute path="/plantlist/:id" component={() => <Plant deletePlant={deletePlantRequest} />} />
-          <PrivateRoute path="/plantlist" component={() => <PlantList deletePlant={deletePlantRequest} />} />
-          <PrivateRoute path="/plantform" component={PlantForm} />
-          <PrivateRoute path="/edituser" component={EditUserForm} />
+          <PrivateRoute path="/plantlist/:id">
+            <Plant deletePlant={deletePlantRequest} plantData={plantList} />
+          </PrivateRoute>
+          <PrivateRoute path="/plantlist">
+            <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />
+          </PrivateRoute>
+          <PrivateRoute path="/plantform">
+            <PlantForm userID={userID} />
+          </PrivateRoute>
+          <PrivateRoute path="/edituser">
+            <EditUserForm />
+          </PrivateRoute>
           <Route path="/signup">
             <UserForm submit={signupRequest} />
           </Route>
           <Route path="/login">
-            <LoginForm submit={loginRequest} />
+            <LoginForm submit={loginRequest} setUserID={setUserID} />
           </Route>
           <Route exact path="/">
             <Home />
