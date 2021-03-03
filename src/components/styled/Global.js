@@ -4,8 +4,9 @@ const GlobalStyle = createGlobalStyle`
     /* Box sizing rules */
     *,
     *::before,
-    *::after {
+    *::after {   
     box-sizing: border-box;
+    font-family: 'Alef', sans-serif;
     }
 
     /* Remove default padding */
