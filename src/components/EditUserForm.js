@@ -24,16 +24,16 @@ export default function EditUserForm(props) {
     const { push } = useHistory();
 
     const onSubmit = evt => {
-        evt.preventDefault()
+        evt.preventDefault();
         schema.validate(values)
             .then(_ => {
-                console.log('userID',String(userID),'typeof userID', typeof userID)
-                submit(String(userID), values, push)
-                setValues(props)
-                setErrors(INITIAL_FORM_ERRORS)
+                console.log('userID',String(userID),'typeof userID', typeof userID);
+                submit(String(userID), values, push);
+                setValues(props);
+                setErrors(INITIAL_FORM_ERRORS);
             })
             .catch(err => {
-                console.error(err)
+                console.error(err);
             })
     }
 

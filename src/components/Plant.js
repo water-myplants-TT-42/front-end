@@ -40,7 +40,7 @@ export default function Plant(props) {
   }
 
   const routeToEdit = _ => {
-    history.push('/plantform')         // Insert edit form path inside quotes
+    history.push({pathname: '/plantform', state: {plant:plant}})         // Insert edit form path inside quotes
   }
 
   return (

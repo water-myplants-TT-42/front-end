@@ -49,7 +49,7 @@ export const editPlantRequest = (id, values, push) => {
   return axiosWithAuth()
     .put(`https://water-plants-app-tt42.herokuapp.com/api/plants/${id}`, values)
     .then(() => {
-      push(`/plant-list/${values.id}`)
+      push(`/plantlist/${id}`)
     })
     .catch(err => console.log({err}))
 }
