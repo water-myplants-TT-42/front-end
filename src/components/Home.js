@@ -4,30 +4,31 @@ import styled from 'styled-components'
 
 import logo from '../icons/plant-color.svg'
 import Button from './styled/Button'
+import { Theme } from './styled/theme'
 
 const StyledHome = styled.div`
     
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 
     #logo {
-        width: 50%;
+        width: ${Theme.largeLogoSize};
         height: auto;
-        margin-bottom: 20px;
+        margin: ${Theme.space} auto;
     }
 
     h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
+        font-size: ${Theme.h1FontSize};
+        margin-bottom: ${Theme.space};
     }
 
     button {
-        width: 200px;
-        height: 50px;
-        font-size: 24px;
-        margin-bottom: 20px;
+        width: ${Theme.buttonWidth};
+        height: ${Theme.buttonHeight};
+        font-size: ${Theme.fontSize};
+        margin-bottom: ${Theme.space};
     }
 `
 
