@@ -25,11 +25,13 @@ export const loginRequest = (values, push, setUserID) => {
     })
 }
 
-export const getPlantList = (userID, setPlantList) => {
+export const getPlantList = (userID) => {
   return axiosWithAuth()
     .get(`https://water-plants-app-tt42.herokuapp.com/api/users/${userID}/plants`)
     .then(res => {
-      setPlantList(res.data)
+      console.log(res);
+      return res
+      // setPlantList(res.data);
     })
     .catch(err => console.log({err}))
 }

@@ -3,38 +3,13 @@ import { Link } from 'react-router-dom';
 import { getPlantList } from '../utils/requests';
 import DeleteModal from './DeleteModal';
 
-// dummy data for testing display, delete when get from backend is implemented
-const dummyList = [
-  {
-    id: 0,
-    nickname: 'Snake',
-    species: 'D. trifasciata',
-    h2oFrequency: '1 time/week',
-  },
-  {
-    id: 1,
-    nickname: 'Spider',
-    species: 'S. arachnoideum',
-    h2oFrequency: '1 time/week',
-  },
-  {
-    id: 2,
-    nickname: 'Frilly',
-    species: 'A. pedatum',
-    h2oFrequency: '3 times/week',
-  },
-]
-
 export default function PlantList(props) {
   const { userID, plantList, setPlantList, deletePlant } = props;
-  console.log('plantlist props', props)
-  // change useState to initialize plantList when connected to backend
-  const [plants, setPlants] = useState(dummyList)
-  const [toDelete, setToDelete] = useState(null)
+  const [toDelete, setToDelete] = useState(null);
 
-  useEffect(()=>{
-    getPlantList(userID, setPlantList)
-  },[userID, setPlantList])
+  useEffect(() => {
+    getPlantList(userID).then(res => setPlantList(res.data))
+  }, [])
 
   const onClickDelete = ({ id, nickname }) => {
     console.log('onClickDelete', id, nickname)
@@ -43,13 +18,13 @@ export default function PlantList(props) {
 
   const confirmDelete = () => {
     if (toDelete) {
-      deletePlant(toDelete.id)
-      setToDelete(null)
+      deletePlant(toDelete.id);
+      setToDelete(null);
     }
   }
 
   const cancelDelete = () => {
-    setToDelete(null)
+    setToDelete(null);
   }
 
   return (

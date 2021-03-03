@@ -23,7 +23,7 @@ const deletePlantRequest = (plantId) => {
 
 function App() {
   const [plantList, setPlantList] = useState([]);
-  const [userID, setUserID] = useState(5);
+  const [userID, setUserID] = useState(null);
   console.log('userID:', userID);
 
   return (
@@ -33,7 +33,11 @@ function App() {
         <Navbar />
         <Switch>
           <PrivateRoute path="/plantlist/:id" component={() => <Plant deletePlant={deletePlantRequest} />} />
-          <PrivateRoute path="/plantlist" component={() => <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />} />
+          {/* <PrivateRoute path="/plantlist" children={() => <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />} /> */}
+
+          <PrivateRoute path="/plantlist">
+            <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />
+          </PrivateRoute>
           <PrivateRoute path="/plantform" component={() => <PlantForm userID={userID} />} />
           <PrivateRoute path="/edituser" component={EditUserForm} />
           <Route path="/signup">
