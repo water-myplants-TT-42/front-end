@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getPlantList } from '../utils/requests';
+import { Link, useHistory } from 'react-router-dom';
+import { getPlantList, deletePlantRequest } from '../utils/requests';
 import DeleteModal from './DeleteModal';
 
 export default function PlantList(props) {
   const { userID, plantList, setPlantList, deletePlant } = props;
   const [toDelete, setToDelete] = useState(null);
+  const { push } = useHistory();
 
   useEffect(() => {
     getPlantList(userID).then(res => setPlantList(res.data))
   }, [])
 
-  const onClickDelete = ({ id, nickname }) => {
-    console.log('onClickDelete', id, nickname)
-    setToDelete({ id, nickname })
+  const onClickDelete = ({ id }) => {
+    console.log('onClickDelete', id);
+    // setToDelete({ id })
+    deletePlantRequest(id, push);
+    setPlantList(plantList.filter(plant => plant.plant_id !== id))
   }
 
   const confirmDelete = () => {
@@ -42,7 +45,7 @@ export default function PlantList(props) {
           <p>{plant.h2oFrequency}</p>
           <button 
             className='delete-button'
-            onClick={_ => onClickDelete({ id: plant.plant_id, nickname: plant.nickname})}
+            onClick={_ => onClickDelete({ id: plant.plant_id })}
             >Delete
           </button>
           {/* Delete button needs functionality...modal window to confirm?? */}

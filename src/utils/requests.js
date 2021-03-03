@@ -65,7 +65,7 @@ export const editUserRequest = (values, push) => {
 
 export const deletePlantRequest = (id, push) => {
   return axiosWithAuth()
-    .delete(`api/plants/${id}`)
+    .delete(`https://water-plants-app-tt42.herokuapp.com/api/plants/${id}`)
     .then(() => {
       push('/plantlist')
     })
