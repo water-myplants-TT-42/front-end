@@ -1,22 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { Theme } from './theme'
-
 const InputLabelWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: ${Theme.inputLabelMargin};
+    margin-bottom: ${props => props.theme.inputLabelMargin};
 
     label {
-        padding-left: ${Theme.inputLabelPadding};
-        font-size: ${Theme.fontSize}
+        padding-left: ${props => props.theme.inputLabelPadding};
+        font-size: ${props => props.theme.fontSize}
     }
     p {
-        padding-right: ${Theme.inputLabelPadding};
-        color: ${Theme.errorRed};
-        font-size: ${Theme.errorFontSize};
+        padding-right: ${props => props.theme.inputLabelPadding};
+        color: ${props => props.theme.errorRed};
+        font-size: ${props => props.theme.errorFontSize};
     }
 `
 
