@@ -10,6 +10,7 @@ const NavWrapper = styled.div`
     height: ${props => props.theme.navBarHeight};
     border-bottom: ${props => props.theme.navBarBorderBottom};
     padding: ${props => props.theme.navBarSpace};
+    margin-bottom: ${props => props.theme.space};
 
     display: flex;
     justify-content: space-between;
@@ -32,7 +33,7 @@ const NavWrapper = styled.div`
         align-items: center
     }
     
-    ${ButtonWrapper} {
+    #user {
         &:hover {
             transform: scale(1.1);
             transition: all 0.5s ease-in-out;

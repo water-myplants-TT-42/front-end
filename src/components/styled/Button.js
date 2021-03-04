@@ -45,6 +45,12 @@ export const ButtonWrapper = styled.button`
             default:        return `0 auto ${props.theme.space}`
         }
     }};
+
+    &:hover {
+        transform: scale(1.1);
+        transition: all 0.5s ease-in-out;
+    }
+    transition: all 0.5s ease-in-out;
 `
 
 export default function Button(props) {
