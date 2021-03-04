@@ -8,7 +8,6 @@ import Form from './styled/Form';
 import Image from './styled/Image';
 import TextInput, { WaterInput } from './styled/Input';
 import Button from './styled/Button';
-import image from '../images/plant-image.png';
 
 const INITIAL_PLANT_FORM_STATE = {
     nickname: '',
@@ -146,7 +145,7 @@ export default function PlantForm(props) {
                     values={[freqNumber, freqTimes]}
                     onChange={onChange}
                     error={errors.h2oFrequency}
-                    labelTexts={['Water', `${freqNumber == 1 ? 'time' : 'times'} per`]}
+                    labelTexts={['Water', `${freqNumber === 1 ? 'time' : 'times'} per`]}
                     numMax={10}
                 />
                 
