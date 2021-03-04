@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import logo from '../icons/plant-color.svg'
 import TextInput from './styled/Input'
 import Button from './styled/Button'
-import { Theme } from './styled/theme'
 
 const INITIAL_FORM_VALUES = {
     username: '',
@@ -34,14 +33,14 @@ const SignUpFormWrapper = styled.div`
     align-items: center;
         
     #logo {
-        width: ${Theme.smallLogoSize};
-        height: ${Theme.smallLogoSize};
-        margin: ${Theme.space} auto;
+        width: ${props => props.theme.smallLogoSize};
+        height: ${props => props.theme.smallLogoSize};
+        margin: ${props => props.theme.space} auto;
     }
 
     h1 {
-        font-size: ${Theme.h1FontSize};
-        margin-bottom: ${Theme.space};
+        font-size: ${props => props.theme.h1FontSize};
+        margin-bottom: ${props => props.theme.space};
     }
 
     form {
@@ -139,7 +138,6 @@ export default function SignUpForm(props) {
                     variant={disabled ? 'disabled' : 'success'}
                     size='normal'
                 />
-                {/* <button disabled={disabled}>submit</button> */}
                 
             </form>
         </SignUpFormWrapper>

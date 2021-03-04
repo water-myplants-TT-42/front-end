@@ -5,12 +5,11 @@ import styled from 'styled-components'
 import user from '../icons/user-icon.svg'
 import logo from '../icons/plant-color.svg'
 import Button, { ButtonWrapper } from './styled/Button'
-import { Theme } from './styled/theme'
 
 const NavWrapper = styled.div`
-    height: ${Theme.navBarHeight};
-    border-bottom: ${Theme.navBarBorderBottom};
-    padding: ${Theme.navBarSpace};
+    height: ${props => props.theme.navBarHeight};
+    border-bottom: ${props => props.theme.navBarBorderBottom};
+    padding: ${props => props.theme.navBarSpace};
 
     display: flex;
     justify-content: space-between;
@@ -44,9 +43,9 @@ const NavWrapper = styled.div`
     @media (min-width: 600px) {
         h3 {
             display: initial;
-            font-size: ${Theme.navBarTitleFontSize};
+            font-size: ${props => props.theme.navBarTitleFontSize};
             padding-top: 0.4rem;
-            margin-left: ${Theme.navBarSpace};
+            margin-left: ${props => props.theme.navBarSpace};
             cursor: pointer;
         }
     }

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import logo from '../icons/plant-color.svg'
 import Button from './styled/Button'
-import { Theme } from './styled/theme'
 
 const StyledHome = styled.div`
     
@@ -14,14 +13,14 @@ const StyledHome = styled.div`
     align-items: center;
 
     #logo {
-        width: ${Theme.largeLogoSize};
-        height: ${Theme.largeLogoSize};
-        margin: ${Theme.space} auto;
+        width: ${props => props.theme.largeLogoSize};
+        height: ${props => props.theme.largeLogoSize};
+        margin: ${props => props.theme.space} auto;
     }
 
     h1 {
-        font-size: ${Theme.h1FontSize};
-        margin-bottom: ${Theme.space};
+        font-size: ${props => props.theme.h1FontSize};
+        margin-bottom: ${props => props.theme.space};
     }
 `
 
