@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Theme } from './theme'
 
-const ButtonWrapper = styled.button`
+export const ButtonWrapper = styled.button`
     color: white;
     cursor: pointer;
     outline: none;
