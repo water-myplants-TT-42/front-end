@@ -34,7 +34,7 @@ export const Theme = {
     buttonWidth: `20rem`,       // all other buttons
 
     medButtonWidth: `15rem`,    // buttons at the bottom of individual plant page only
-    navButtonWidth: `110rem`,   // nav buttons only
+    navButtonWidth: `11rem`,   // nav buttons only
 
     inputHeight: `5rem`,
     inputWidth: `35rem`,
@@ -57,6 +57,7 @@ export const Theme = {
     cardTitleFontSize: `2.2rem`,
     miniButtonFontSize: `2rem`,
     errorFontSize: `2rem`,
+    navBarTitleFontSize: `2.8rem`,
 
 
     // Spacing

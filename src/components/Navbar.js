@@ -1,89 +1,91 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+
 import user from '../icons/user-icon.svg'
 import logo from '../icons/plant-color.svg'
 import Button, { ButtonWrapper } from './styled/Button'
-
+import { Theme } from './styled/theme'
 
 const NavWrapper = styled.div`
-    height: ${(props) => props.theme.navBarHeight};
-    size: ${(props) => props.theme.navIconSize};
-    border-bottom: ${(props) => props.theme.navBarBorderBottom};
-    margin: 0 auto;
-    width: 100%;
-    max-width: ${(props) => props.maxWidth};
+    height: ${Theme.navBarHeight};
+    border-bottom: ${Theme.navBarBorderBottom};
+    padding: ${Theme.navBarSpace};
+
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    * {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        
+
+    h3 {
+        display: none;
     }
-    & > div{
-        // only applies to immediate children of wrapper
-        cursor: pointer;
-        align-items:center;
-    }
-    h3{
-        font-size: 1.5rem;
-    }
-    #logo{
-        width: 50px;
-        height: auto;
-    }
-    #user{
+
+    #logo, #user {
         width: 50px;
         height: auto;
         cursor: pointer;
     }
 
-    ul {
-        width: 50%;        
-        li{
-        justify-content: space-between;
-        }
+    div {
+        display: flex;
+        flex-flow: row nowrap
+        justify-content: space-between
+        align-items: center
     }
+    
     ${ButtonWrapper} {
-        background-color: ${(props) => props.theme.successColor};
-        font-size: 1rem;
-        height: 33px;
-        padding: ${(props) => props.size === 'small' ? `0.25rem 0.5rem` : `0.5rem 1rem`};
-        margin: 0 auto;
         &:hover {
             transform: scale(1.1);
             transition: all 0.5s ease-in-out;
         }
         transition: all 0.5s ease-in-out;
     }
+
+    @media (min-width: 600px) {
+        h3 {
+            display: initial;
+            font-size: ${Theme.navBarTitleFontSize};
+            padding-top: 0.4rem;
+            margin-left: ${Theme.navBarSpace};
+            cursor: pointer;
+        }
+    }
 `
 
-
 export default function Navbar(props) {
-const history = useHistory()    
-const { maxWidth, className, isAuthenticated } = props
+    
+    const { maxWidth, className, isAuthenticated } = props
+    const history = useHistory()
+
+    const routeTo = (location) => {
+        history.push(location)
+    }
+
     return (
-        <>
-            {/* <h1>text placeholder</h1> */}
-            <NavWrapper maxWidth={maxWidth} className={className}>
-                <div onClick={() => {history.push('/plantlist')}}>
-                    <img src={logo} id='logo'></img>
-                    <h3>Water My Plants</h3>
-                </div>
-                <ul>
-                    
-                    <li><Button onClick={() => {history.push('/signup')}}>Sign Up</Button></li>
-                    <li><Button onClick={() => {history.push('/login')}}>Login</Button></li>
-                {/* </ul>
-                <br></br>
-                <ul> */}
-                    <li><Button onClick={() => {history.push('/plantform')}}>Create Plant</Button></li>
-                    <li><Button onClick={() => {history.push('/plantlist')}}>View Plant List</Button></li>
-                </ul>
-                <img src={user} id='user' onClick={() => {history.push('/edituser')}}></img>
-            </NavWrapper>
-        </>
+        <NavWrapper maxWidth={maxWidth} className={className}>
+            <div id='nav-logo' onClick={() => routeTo('/plantlist')}>
+                <img src={logo} id='logo' />
+                <h3>Water My Plants</h3>
+            </div>
+            <div id='nav-buttons'>
+                <Button
+                    children='List'
+                    variant='nav'
+                    size='nav'
+                    onClick={() => routeTo('/plantlist')} 
+                    />
+                <Button 
+                    children='+ New'
+                    variant='nav'
+                    size='nav'
+                    onClick={() => routeTo('/plantform')}
+                    />
+                <img 
+                    src={user} 
+                    id='user' 
+                    onClick={() => routeTo('/edituser')} 
+                />
+            </div>
+        </NavWrapper>
     )
 }

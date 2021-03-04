@@ -41,8 +41,12 @@ export const ButtonWrapper = styled.button`
             default:        return Theme.buttonHeight
         }
     }};
-    margin: 0 auto;
-    margin-bottom: ${Theme.space};
+    margin: ${props => {
+        switch(props.size) {
+            case 'nav':     return `0 ${Theme.navBarSpace} 0 auto`
+            default:        return `0 auto ${Theme.space}`
+        }
+    }};
 `
 
 export default function Button(props) {
