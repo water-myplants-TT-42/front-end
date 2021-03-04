@@ -22,8 +22,9 @@ const deletePlantRequest = (plantId) => {
 }
 
 function App() {
+  const storedUserID = localStorage.getItem('userID');
   const [plantList, setPlantList] = useState([]);
-  const [userID, setUserID] = useState(null);
+  const [userID, setUserID] = useState(storedUserID ? storedUserID : null);
   console.log('userID:', userID);
 
   return (

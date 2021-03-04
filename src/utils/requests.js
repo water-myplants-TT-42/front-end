@@ -18,6 +18,7 @@ export const loginRequest = (values, push, setUserID) => {
     .then(res => {
         setUserID(res.data.user_id);
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userID', res.data.user_id);
         push('/plantlist');
     })
     .catch(err => {
