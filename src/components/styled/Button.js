@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { Theme } from './theme'
+
 export const ButtonWrapper = styled.button`
     color: white;
     cursor: pointer;
@@ -8,39 +10,43 @@ export const ButtonWrapper = styled.button`
     border: none;
     border-radius: ${props => {
         switch(props.size) {
-            case 'mini':    return props.theme.miniBorderRadius
-            default:        return props.theme.borderRadius
+            case 'mini':    return Theme.miniBorderRadius
+            default:        return Theme.borderRadius
         }
     }};
     background-color: ${props => {
         switch (props.variant) {
-            case 'danger':      return props.theme.buttonRed
-            case 'disabled':    return props.theme.buttonGray
-            default:            return props.theme.buttonGreen
+            case 'danger':      return Theme.buttonRed
+            case 'disabled':    return Theme.buttonGray
+            default:            return Theme.buttonGreen
         }
     }};
     font-size: ${props => {
         switch (props.size) {
-            case 'mini':    return props.theme.miniButtonFontSize
-            default:        return props.theme.fontSize
+            case 'mini':    return Theme.miniButtonFontSize
+            default:        return Theme.fontSize
         }
     }};
     width: ${props => {
         switch(props.size) {
-            case 'mini':    return props.theme.miniButtonWidth
-            case 'med':     return props.theme.medButtonWidth
-            case 'nav':     return props.theme.navButtonWidth
-            default:        return props.theme.buttonWidth
+            case 'mini':    return Theme.miniButtonWidth
+            case 'med':     return Theme.medButtonWidth
+            case 'nav':     return Theme.navButtonWidth
+            default:        return Theme.buttonWidth
         }
     }};
     height: ${props => {
         switch(props.size) {
-            case 'mini':    return props.theme.miniButtonHeight
-            default:        return props.theme.buttonHeight
+            case 'mini':    return Theme.miniButtonHeight
+            default:        return Theme.buttonHeight
         }
     }};
-    margin: 0 auto;
-    margin-bottom: ${props => props.theme.space};
+    margin: ${props => {
+        switch(props.size) {
+            case 'nav':     return `0 ${Theme.navBarSpace} 0 auto`
+            default:        return `0 auto ${Theme.space}`
+        }
+    }};
 `
 
 export default function Button(props) {
