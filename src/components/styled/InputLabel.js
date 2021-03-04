@@ -15,6 +15,7 @@ const InputLabelWrapper = styled.div`
         padding-right: ${props => props.theme.inputLabelPadding};
         color: ${props => props.theme.errorRed};
         font-size: ${props => props.theme.errorFontSize};
+        margin-bottom: 0;
     }
 `
 
