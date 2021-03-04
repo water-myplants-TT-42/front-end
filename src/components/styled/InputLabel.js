@@ -11,12 +11,12 @@ const InputLabelWrapper = styled.div`
 
     label {
         padding-left: ${Theme.inputLabelPadding};
-        fontSize: ${Theme.fontSize}
+        font-size: ${Theme.fontSize}
     }
     p {
         padding-right: ${Theme.inputLabelPadding};
         color: ${Theme.errorRed};
-        fontSize: ${Theme.errorFontSize};
+        font-size: ${Theme.errorFontSize};
     }
 `
 

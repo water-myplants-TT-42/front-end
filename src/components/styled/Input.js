@@ -6,6 +6,7 @@ import { Theme } from './theme'
 
 const InputWrapper = styled.div`
     width: ${Theme.inputWidth};
+    margin-bottom: ${Theme.space};
 
     input {
         border-radius: ${props => {
@@ -24,9 +25,8 @@ const InputWrapper = styled.div`
         font-size: ${Theme.fontSize};
         width: ${Theme.inputWidth};
         height: ${Theme.inputHeight};
-        padding: auto 1.6rem;
+        padding: ${Theme.inputFieldPadding};
         outline: none;
-        margin-bottom: ${Theme.space}
 
         &:focus {
             border: ${(props) => (
