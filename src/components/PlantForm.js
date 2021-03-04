@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import * as yup from 'yup';
 import { addPlantRequest, editPlantRequest } from '../utils/requests';
+import styled from 'styled-components';
 
 import Container from './styled/Container';
 import Form from './styled/Form';
 import Image from './styled/Image';
 import TextInput, { WaterInput } from './styled/Input';
 import Button from './styled/Button';
-import image from '../images/plant-image.png';
 
 const INITIAL_PLANT_FORM_STATE = {
     nickname: '',
@@ -34,6 +34,18 @@ const formSchema = yup.object().shape({
     species: yup.string().required('required'),
     h2oFrequency: yup.string().required('required') 
 })
+
+const PlantFormWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    h1 {
+        font-size: ${props => props.theme.h1FontSize};
+        margin-bottom: ${props => props.theme.space};
+    }
+`
 
 export default function PlantForm(props) {
     const { plantToEdit, userID } = props;
@@ -119,7 +131,7 @@ export default function PlantForm(props) {
     })
 
     return (
-        <Container maxWidth="600px">
+        <PlantFormWrapper>
 
             <h1>{isEditing ? 'Edit' : 'New'} Plant</h1>
             <Image size='15rem'/>
@@ -157,6 +169,6 @@ export default function PlantForm(props) {
                 />
 
             </Form>
-        </Container>
+        </PlantFormWrapper>
     )
 }
