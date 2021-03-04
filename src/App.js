@@ -12,7 +12,7 @@ import LoginForm from './components/LoginForm';
 import PlantForm from './components/PlantForm';
 import PlantList from './components/PlantList';
 import Plant from './components/Plant';
-import NavBar from './components/NavBar'
+import NavBar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute';
 import { signupRequest, loginRequest, editUserRequest } from './utils/requests';
 
