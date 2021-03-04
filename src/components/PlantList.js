@@ -46,7 +46,7 @@ export default function PlantList(props) {
         isOpen={!!toDelete}
         confirm={confirmDelete}
         cancel={cancelDelete}
-        text={toDelete ? `Delete ${toDelete.nickname}` : 'Delete this plant?'}
+        text={toDelete ? `Delete '${toDelete.nickname}'?` : 'Delete this plant?'}
 
       />
       {plantList.length === 0 && (

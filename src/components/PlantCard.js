@@ -37,19 +37,28 @@ const CardTitle = styled.h5`
     text-align: center;
     font-size: ${props => props.theme.fontSize};
     width: 100%;
-
+    padding: 0 0.5rem;
     a {
         color: inherit;
         text-decoration: none;
+    }
+
+    p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 `
 
 export default function Card(props) {
     const { plant, deletePlant } = props
+
     return (
         <CardWrapper image={plant.image || plantImage}>
             <CardTitle>
-                <Link to={`/plantlist/${plant.plant_id}`}>{plant.nickname}</Link>
+                <Link to={`/plantlist/${plant.plant_id}`}>
+                    <p>{plant.nickname}</p>
+                </Link>
             </CardTitle>
             <Button size="mini" variant="danger" onClick={() => deletePlant(plant)}>Delete</Button>
         </CardWrapper>
