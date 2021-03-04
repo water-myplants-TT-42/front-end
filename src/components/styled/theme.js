@@ -6,11 +6,6 @@ export const Theme = {
     darkBgColor: `#828282`,
     mediumBgColor: `#e5e5e5`,
 
-    // Sizes and Units
-    borderRadius: `25px`,
-
-
-
     // -------------NEW--------------
     // Mobile Theme (default)
 

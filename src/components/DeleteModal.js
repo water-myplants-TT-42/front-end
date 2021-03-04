@@ -10,18 +10,23 @@ const DeleteModalWrapper = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(242, 242, 242, 0.8);
+    background-color: ${props => props.theme.blurBackground};
     display: flex;
     justify-content: center;
     align-items: center;
 
     & > div {
+        border: 1px solid red;
         background-color: white;
         text-align: center;
         padding: 1rem;
-        width: 100%;
+        width: ${props => props.theme.modalSize};
+        height: ${props => props.theme.modalSize};
         max-width: 400px;
 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         h4 {
             margin-bottom: 2rem;
