@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components'
 
 import logo from '../icons/plant-color.svg'
@@ -10,21 +10,24 @@ import { Theme } from './styled/theme'
 
 const INITIAL_FORM_VALUES = {
     username: '',
+    phoneNumber: '',
     password: ''
 }
 
 const INITIAL_FORM_ERRORS = {
     username: '',
+    phoneNumber: '',
     password: ''
 }
 
 // Form schema
 const schema = yup.object().shape({
     username: yup.string().required('required'),
+    phoneNumber: yup.string().required('required'),
     password: yup.string().required('required')
 })
 
-const LoginFormWrapper = styled.div`
+const SignUpFormWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -49,8 +52,8 @@ const LoginFormWrapper = styled.div`
     }
 `
 
-export default function LoginForm(props) {
-    const { submit, setUserID } = props
+export default function SignUpForm(props) {
+    const { submit } = props
     const [values, setValues] = useState(INITIAL_FORM_VALUES)
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
     const [disabled, setDisabled] = useState(true)
@@ -60,9 +63,10 @@ export default function LoginForm(props) {
         evt.preventDefault()
         schema.validate(values)
             .then(_ => {
-                submit(values, push, setUserID);
+                submit(values, push)
                 setValues(INITIAL_FORM_VALUES)
                 setErrors(INITIAL_FORM_ERRORS)
+                
             })
             .catch(err => {
                 console.error(err)
@@ -95,9 +99,9 @@ export default function LoginForm(props) {
     })
 
     return (
-        <LoginFormWrapper>
+        <SignUpFormWrapper>
             <img src={logo} id='logo'/>
-            <h1>Log In</h1>
+            <h1>Sign Up</h1>
             <form className='form container' onSubmit={onSubmit}>
                 
                 <TextInput 
@@ -110,6 +114,14 @@ export default function LoginForm(props) {
                 />
                 <TextInput
                     onChange={onChange}
+                    value={values.phoneNumber}
+                    name='phoneNumber'
+                    type='tel'
+                    error={errors.phoneNumber}
+                    labelText='Phone'
+                />
+                <TextInput
+                    onChange={onChange}
                     value={values.password}
                     name='password'
                     type='password'
@@ -117,15 +129,14 @@ export default function LoginForm(props) {
                     labelText='Password'
                 />
                 
-                <Button 
-                    // onClick=
+                <Button
                     children='Submit'
                     variant={disabled ? 'disabled' : 'success'}
                     size='normal'
                 />
                 {/* <button disabled={disabled}>submit</button> */}
-
+                
             </form>
-        </LoginFormWrapper>
+        </SignUpFormWrapper>
     )
 }

@@ -17,30 +17,23 @@ const schema = yup.object().shape({
 })
 
 export default function EditUserForm(props) {
-    const { submit } = props
-    const [values, setValues] = useState(props)
+    const { submit, userID  } = props
+    const [values, setValues] = useState({})
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
     const [disabled, setDisabled] = useState(true)
     const { push } = useHistory();
 
     const onSubmit = evt => {
-        evt.preventDefault()
+        evt.preventDefault();
         schema.validate(values)
             .then(_ => {
-                submit(values)
-                setValues(props)
-                setErrors(INITIAL_FORM_ERRORS)
-                axios
-                .post('', values)
-                .then(() => {
-                    push('/login')
-                })
-                .catch(err => {
-                    console.log('User information update failure', err)
-                })
+                console.log('userID',String(userID),'typeof userID', typeof userID);
+                submit(String(userID), values, push);
+                setValues(props);
+                setErrors(INITIAL_FORM_ERRORS);
             })
             .catch(err => {
-                console.error(err)
+                console.error(err);
             })
     }
 

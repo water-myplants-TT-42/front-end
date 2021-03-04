@@ -2,20 +2,38 @@ import React from 'react'
 import styled from 'styled-components'
 
 import InputLabel from './InputLabel'
+import { Theme } from './theme'
 
 const InputWrapper = styled.div`
+    width: ${Theme.inputWidth};
+    margin-bottom: ${Theme.space};
+
     input {
-        border-radius: 25px;
-        border: 2px solid;
-        border-color: ${(props) => props.error ? props.theme.dangerColor : 'transparent'};
-        background-color: ${(props) => props.theme.mediumBgColor};
-        width: 100%;
-        font-size: 22px;
-        padding: 0.25rem 0.5rem;
+        border-radius: ${props => {
+            switch (props.type) {
+                case 'dropdown': return 'none'
+                default: return Theme.borderRadius
+            }
+        }};
+        border: ${props => (
+            props.error
+                ? Theme.inputErrorBorder
+                : 'none'
+        )};
+        background-color: ${Theme.inputGray};
+        color: ${Theme.inputTextGray};
+        font-size: ${Theme.fontSize};
+        width: ${Theme.inputWidth};
+        height: ${Theme.inputHeight};
+        padding: ${Theme.inputFieldPadding};
         outline: none;
 
         &:focus {
-            border-color: ${(props) => props.error ? props.theme.dangerColor : props.theme.darkBgColor};
+            border: ${(props) => (
+                props.error 
+                    ? Theme.inputErrorBorder 
+                    : `2px solid ${Theme.borderGray}`
+            )};
         }
     }
 `

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import * as yup from 'yup'
-import { addPlantRequest } from '../utils/requests';
+import { useHistory, useLocation } from 'react-router-dom';
+import * as yup from 'yup';
+import { addPlantRequest, editPlantRequest } from '../utils/requests';
 
-import Button from './styled/Button'
-import Container from './styled/Container'
-import Form from './styled/Form'
-import TextInput from './styled/Input'
+import Button from './styled/Button';
+import Container from './styled/Container';
+import Form from './styled/Form';
+import TextInput from './styled/Input';
 
 const INITIAL_PLANT_FORM_STATE = {
     nickname: '',
@@ -35,7 +35,9 @@ const formSchema = yup.object().shape({
 
 export default function PlantForm(props) {
     const { plantToEdit, userID } = props;
-    const [values, setValues] = useState(INITIAL_PLANT_FORM_STATE);
+    const location = useLocation();
+    const thisPlant = location.state ? location.state.plant : INITIAL_PLANT_FORM_STATE;
+    const [values, setValues] = useState(thisPlant);
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS);
     const [isDisabled, setIsDisabled] = useState(true);
     const { push } = useHistory();
@@ -43,7 +45,7 @@ export default function PlantForm(props) {
     // Utility to keep number and dropbox in sync
     const [freqNumber, freqTimes] = parseFrequency(values.h2oFrequency)
 
-    const isEditing = !!plantToEdit // Coerce to boolean to check if editing
+    const isEditing = !!thisPlant.nickname.length; // Coerce to boolean to check if editing
 
     const change = (evt) => {
         const { name, value } = evt.target
@@ -98,11 +100,10 @@ export default function PlantForm(props) {
                 setIsDisabled(true)
 
                 if (isEditing) {
-                    console.log('EDIT', values)
+
+                    editPlantRequest(thisPlant.plant_id, values, push)
                 } else {
-                    console.log("userID:", userID);
                     const userValues = {...values, user_id:userID};
-                    console.log('CREATE', userValues);
                     addPlantRequest(userValues, push);
                 }
             })

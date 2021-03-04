@@ -45,27 +45,27 @@ export const addPlantRequest = (values, push) => {
     .catch(err => console.log({err}))
 }
 
-export const editPlantRequest = (values, push) => {
+export const editPlantRequest = (id, values, push) => {
   return axiosWithAuth()
-    .put('/api/plants', values)
+    .put(`https://water-plants-app-tt42.herokuapp.com/api/plants/${id}`, values)
     .then(() => {
-      push(`/plant-list/${values.id}`)
+      push(`/plantlist/${id}`)
     })
     .catch(err => console.log({err}))
 }
 
-export const editUserRequest = (values, push) => {
+export const editUserRequest = (id, values, push) => {
   return axiosWithAuth()
-    .put('/api/users', values)
+    .put(`https://water-plants-app-tt42.herokuapp.com/api/users/${id}`, values)
     .then(() => {
-      push('/plantlist')
+      push('/plantlist');
     })
     .catch(err => console.log({err}))
 }
 
 export const deletePlantRequest = (id, push) => {
   return axiosWithAuth()
-    .delete(`api/plants/${id}`)
+    .delete(`https://water-plants-app-tt42.herokuapp.com/api/plants/${id}`)
     .then(() => {
       push('/plantlist')
     })

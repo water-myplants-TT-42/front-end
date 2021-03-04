@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import DeleteModal from './DeleteModal';
-import { getPlant } from '../utils/requests';
+import { getPlant, deletePlantRequest } from '../utils/requests';
 
 // dummy data for testing display, delete when get from backend is implemented
 // dummy data means all /plant-list/:plantID links will display the same data
@@ -13,7 +13,7 @@ const dummyData = {
 }
 
 export default function Plant(props) {
-  const { plantData, deletePlant } = props;
+  const { plantList, setPlantList } = props;
   const history = useHistory();
   // delete useState when connected to backend/pass plant itself as prop in place of plantData
   const params = useParams();
@@ -30,7 +30,8 @@ export default function Plant(props) {
   }
 
   const confirmDelete = () => {
-    deletePlant(plant.plant_id)
+    deletePlantRequest(plant.plant_id, history.push);
+    setPlantList(plantList.filter(each => each.plant_id !== plant.plant_id))
     setIsDeleting(false)
   }
 
@@ -39,7 +40,7 @@ export default function Plant(props) {
   }
 
   const routeToEdit = _ => {
-    history.push('/plantform')         // Insert edit form path inside quotes
+    history.push({pathname: '/plantform', state: {plant:plant}})         // Insert edit form path inside quotes
   }
 
   return (
