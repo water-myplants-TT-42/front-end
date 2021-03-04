@@ -63,13 +63,13 @@ const NavWrapper = styled.div`
 
 export default function Navbar(props) {
 const history = useHistory()    
-const { maxWidth, className, isAuthenticated } = props
+const { maxWidth, className } = props
     return (
         <>
             {/* <h1>text placeholder</h1> */}
             <NavWrapper maxWidth={maxWidth} className={className}>
                 <div onClick={() => {history.push('/plantlist')}}>
-                    <img src={logo} id='logo'></img>
+                    <img src={logo} id='logo' alt="logo"/>
                     <h3>Water My Plants</h3>
                 </div>
                 <ul>
@@ -82,7 +82,7 @@ const { maxWidth, className, isAuthenticated } = props
                     <li><Button onClick={() => {history.push('/plantform')}}>Create Plant</Button></li>
                     <li><Button onClick={() => {history.push('/plantlist')}}>View Plant List</Button></li>
                 </ul>
-                <img src={user} id='user' onClick={() => {history.push('/edituser')}}></img>
+                <img src={user} alt="user-icon" id='user' onClick={() => {history.push('/edituser')}}></img>
             </NavWrapper>
         </>
     )
