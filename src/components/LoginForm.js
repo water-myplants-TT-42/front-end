@@ -84,10 +84,13 @@ export default function LoginForm(props) {
                     [name]: ''
                 })
             })
-            .catch(err => setErrors({ 
-                ...errors,
-                [name]: err.errors[0]
-            }))
+            .catch(err => {
+                setErrors({ 
+                    ...errors,
+                    [name]: err.errors[0]
+                })
+                    setDisabled(true)
+            })
     }
 
     useEffect(() => {
