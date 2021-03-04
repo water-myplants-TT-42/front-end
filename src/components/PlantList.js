@@ -9,7 +9,6 @@ import DeleteModal from './DeleteModal';
 import PlantCard from './PlantCard';
 
 const PlantListWrapper = styled(Container)`
-  border: 1px solid green;
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
@@ -50,7 +49,12 @@ export default function PlantList(props) {
         text={toDelete ? `Delete ${toDelete.nickname}` : 'Delete this plant?'}
 
       />
-      {plantList.map(plant => (
+      {plantList.length === 0 && (
+        <div>
+          You don't have any plants!
+        </div>
+      )}
+      {plantList.length !== 0 && plantList.map(plant => (
         <PlantCard 
           key={plant.plant_id} 
           plant={plant}
