@@ -6,7 +6,7 @@ import { Theme } from './components/styled/theme';
 import GlobalStyle from './components/styled/Global';
 
 import Home from './components/Home';
-import UserForm from './components/UserForm';
+import SignUpForm from './components/SignUpForm';
 import EditUserForm from './components/EditUserForm';
 import LoginForm from './components/LoginForm';
 import PlantForm from './components/PlantForm';
@@ -45,7 +45,7 @@ function App() {
             <EditUserForm submit={editUserRequest} userID={userID} />
           </PrivateRoute>
           <Route path="/signup">
-            <UserForm submit={signupRequest} />
+            <SignUpForm submit={signupRequest} />
           </Route>
           <Route path="/login">
             <LoginForm submit={loginRequest} setUserID={setUserID} />

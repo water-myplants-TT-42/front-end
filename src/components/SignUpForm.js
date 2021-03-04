@@ -21,7 +21,7 @@ const schema = yup.object().shape({
     password: yup.string().required()
 })
 
-export default function UserForm(props) {
+export default function SignUpForm(props) {
     const { submit } = props
     const [values, setValues] = useState(INITIAL_FORM_VALUES)
     const [errors, setErrors] = useState(INITIAL_FORM_ERRORS)
