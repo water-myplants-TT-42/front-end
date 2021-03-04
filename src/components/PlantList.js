@@ -16,7 +16,7 @@ const PlantListWrapper = styled(Container)`
 `
 
 export default function PlantList(props) {
-  const { userID, plantList, setPlantList, deletePlant } = props;
+  const { userID, plantList, setPlantList } = props;
   const [toDelete, setToDelete] = useState(null);
   const { push } = useHistory();
 
@@ -56,16 +56,6 @@ export default function PlantList(props) {
           plant={plant}
           deletePlant={onClickDelete}
         />
-        // <div className="plant-card" key={plant.plant_id}>
-        //   <Link to={`/plantlist/${plant.plant_id}`}><h3>{plant.nickname}</h3></Link>
-        //   <p>{plant.h2oFrequency}</p>
-        //   <button 
-        //     className='delete-button'
-        //     onClick={_ => onClickDelete({ id: plant.plant_id, nickname: plant.nickname })}
-        //     >Delete
-        //   </button>
-        //   {/* Delete button needs functionality...modal window to confirm?? */}
-        // </div>
       ))}
     </PlantListWrapper>
   )

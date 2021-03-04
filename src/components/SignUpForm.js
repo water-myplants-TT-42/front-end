@@ -102,7 +102,7 @@ export default function SignUpForm(props) {
 
     return (
         <SignUpFormWrapper>
-            <img src={logo} id='logo'/>
+            <img src={logo} id='logo' alt="logo" />
             <h1>Sign Up</h1>
             <form className='form container' onSubmit={onSubmit}>
                 

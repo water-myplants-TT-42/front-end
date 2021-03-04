@@ -98,7 +98,7 @@ export default function LoginForm(props) {
 
     return (
         <LoginFormWrapper>
-            <img src={logo} id='logo'/>
+            <img src={logo} id='logo' alt="logo" />
             <h1>Log In</h1>
             <form className='form container' onSubmit={onSubmit}>
                 
