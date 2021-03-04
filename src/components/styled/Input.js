@@ -2,37 +2,36 @@ import React from 'react'
 import styled from 'styled-components'
 
 import InputLabel from './InputLabel'
-import { Theme } from './theme'
 
 const InputWrapper = styled.div`
-    width: ${Theme.inputWidth};
-    margin-bottom: ${Theme.space};
+    width: ${props => props.theme.inputWidth};
+    margin-bottom: ${props => props.theme.space};
 
     input {
         border-radius: ${props => {
             switch (props.type) {
                 case 'dropdown': return 'none'
-                default: return Theme.borderRadius
+                default: return props.theme.borderRadius
             }
         }};
         border: ${props => (
             props.error
-                ? Theme.inputErrorBorder
+                ? props.theme.inputErrorBorder
                 : 'none'
         )};
-        background-color: ${Theme.inputGray};
-        color: ${Theme.inputTextGray};
-        font-size: ${Theme.fontSize};
-        width: ${Theme.inputWidth};
-        height: ${Theme.inputHeight};
-        padding: ${Theme.inputFieldPadding};
+        background-color: ${props => props.theme.inputGray};
+        color: ${props => props.theme.inputTextGray};
+        font-size: ${props => props.theme.fontSize};
+        width: ${props => props.theme.inputWidth};
+        height: ${props => props.theme.inputHeight};
+        padding: ${props => props.theme.inputFieldPadding};
         outline: none;
 
         &:focus {
             border: ${(props) => (
                 props.error 
-                    ? Theme.inputErrorBorder 
-                    : `2px solid ${Theme.borderGray}`
+                    ? props.theme.inputErrorBorder 
+                    : `2px solid ${props.theme.borderGray}`
             )};
         }
     }
