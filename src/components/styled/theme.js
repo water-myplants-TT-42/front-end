@@ -27,7 +27,7 @@ export const Theme = {
 
     textBlack: `#000000`,
     textWhite: `#FFFFFF`,
-
+    errorRed: `#FF0000`,
 
     // Button and Input Fields
     buttonHeight: `5rem`,
@@ -38,6 +38,7 @@ export const Theme = {
 
     inputHeight: `5rem`,
     inputWidth: `35rem`,
+    inputErrorBorder: `2px solid #FF0000`,
 
 
     // Mini Buttons
@@ -66,21 +67,21 @@ export const Theme = {
     // Nav Item Standards
     navBarHeight: `7rem`,
     navIconSize: `5rem`,
-    navBarBorderBottom: `2px solid BDBDBD`,
+    navBarBorderBottom: `2px solid #BDBDBD`,
 
 
     // Card Standards
     cardSize: `45%`,
     cardHeaderHeight: `4rem`,    // White area at the top of cards
-    cardBackground: `E0E0E0`,
-    cardBorder: `1px solid BDBDBD`,
+    cardBackground: `#E0E0E0`,
+    cardBorder: `1px solid #BDBDBD`,
     cardBoxShadow: `2px 2px 4px rgba(0, 0, 0, 0.25)`,
 
 
     // Modal Constants
     blurBackground: `rgba(242, 242, 242, .8)`,  // For the element that covers screen
     modalSize: `25rem`,
-    modalBorder: `1px solid BDBDBD`,
+    modalBorder: `1px solid #BDBDBD`,
 
 
     // Logo sizes
