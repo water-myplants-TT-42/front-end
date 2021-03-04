@@ -34,7 +34,7 @@ export default function Home(props) {
 
     return (
         <StyledHome>
-            <img src={logo} id='logo'/>
+            <img src={logo} id='logo' alt="logo"/>
             <h1>Water My Plants</h1>
             <Button 
                 size='normal'

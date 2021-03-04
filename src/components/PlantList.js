@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { getPlantList, deletePlantRequest } from '../utils/requests';
+
+import Container from './styled/Container'
 import DeleteModal from './DeleteModal';
+import PlantCard from './PlantCard';
+
+const PlantListWrapper = styled(Container)`
+  border: 1px solid green;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`
 
 export default function PlantList(props) {
-  const { userID, plantList, setPlantList, deletePlant } = props;
+  const { userID, plantList, setPlantList } = props;
   const [toDelete, setToDelete] = useState(null);
   const { push } = useHistory();
 
   useEffect(() => {
     getPlantList(userID).then(res => setPlantList(res.data))
-  }, [])
+  }, [userID, setPlantList])
 
-  const onClickDelete = ({ id, nickname }) => {
-    console.log('onClickDelete', id, nickname);
-    setToDelete({ id, nickname })
+  const onClickDelete = ({ plant_id, nickname }) => {
+    console.log('onClickDelete', plant_id, nickname);
+    setToDelete({ plant_id, nickname })
   }
 
   const confirmDelete = () => {
     if (toDelete) {
-      deletePlantRequest(toDelete.id, push);
+      deletePlantRequest(toDelete.plant_id, push);
       setPlantList(plantList.filter(plant => plant.plant_id !== toDelete.id))
       setToDelete(null);
     }
@@ -30,7 +42,7 @@ export default function PlantList(props) {
   }
 
   return (
-    <div className="plant-list-wrapper">
+    <PlantListWrapper maxWidth="768px">
       <DeleteModal 
         isOpen={!!toDelete}
         confirm={confirmDelete}
@@ -39,17 +51,12 @@ export default function PlantList(props) {
 
       />
       {plantList.map(plant => (
-        <div className="plant-card" key={plant.plant_id}>
-          <Link to={`/plantlist/${plant.plant_id}`}><h3>{plant.nickname}</h3></Link>
-          <p>{plant.h2oFrequency}</p>
-          <button 
-            className='delete-button'
-            onClick={_ => onClickDelete({ id: plant.plant_id, nickname: plant.nickname })}
-            >Delete
-          </button>
-          {/* Delete button needs functionality...modal window to confirm?? */}
-        </div>
+        <PlantCard 
+          key={plant.plant_id} 
+          plant={plant}
+          deletePlant={onClickDelete}
+        />
       ))}
-    </div>
+    </PlantListWrapper>
   )
 }

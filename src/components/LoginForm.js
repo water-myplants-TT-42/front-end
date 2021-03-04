@@ -78,9 +78,11 @@ export default function LoginForm(props) {
 
         yup.reach(schema, name)
             .validate(value)
-            .then(isValid => {
-                setDisabled(!isValid)
-                setErrors(INITIAL_FORM_ERRORS)
+            .then(_ => {
+                setErrors({
+                    ...errors,
+                    [name]: ''
+                })
             })
             .catch(err => setErrors({ 
                 ...errors,
@@ -96,7 +98,7 @@ export default function LoginForm(props) {
 
     return (
         <LoginFormWrapper>
-            <img src={logo} id='logo'/>
+            <img src={logo} id='logo' alt="logo" />
             <h1>Log In</h1>
             <form className='form container' onSubmit={onSubmit}>
                 
