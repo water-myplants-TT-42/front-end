@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
+import styled from 'styled-components'
+
+import logo from '../icons/plant-color.svg'
+import TextInput from './styled/Input'
+import Button from './styled/Button'
+import { Theme } from './styled/theme'
 
 const INITIAL_FORM_VALUES = {
     username: '',
@@ -16,10 +22,35 @@ const INITIAL_FORM_ERRORS = {
 
 // Form schema
 const schema = yup.object().shape({
-    username: yup.string().required(),
-    phoneNumber: yup.string().required(),
-    password: yup.string().required()
+    username: yup.string().required('required'),
+    phoneNumber: yup.string().required('required'),
+    password: yup.string().required('required')
 })
+
+const SignUpFormWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+        
+    #logo {
+        width: ${Theme.smallLogoSize};
+        height: ${Theme.smallLogoSize};
+        margin: ${Theme.space} auto;
+    }
+
+    h1 {
+        font-size: ${Theme.h1FontSize};
+        margin-bottom: ${Theme.space};
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+`
 
 export default function SignUpForm(props) {
     const { submit } = props
@@ -68,43 +99,44 @@ export default function SignUpForm(props) {
     })
 
     return (
-        <form className='form container' onSubmit={onSubmit}>
-		<div className='form-group submit'>
-			<h2>submit</h2>
-			<div className='errors'>
-				<div>{errors.username}</div>
-				<div>{errors.phoneNumber}</div>
-				<div>{errors.password}</div>
-			</div>
-			<button disabled={disabled}>submit</button>
-		</div>
-		<div className='form-group inputs'>
-			<h1>text placeholder</h1>
-			<label>Username:&nbsp;
-				<input
-				value={values.username}
-				onChange={onChange}
-				name='username'
-				type='text'
-				/>
-			</label>
-			<label>Phone Number:&nbsp;
-				<input
-				value={values.phoneNumber}
-				onChange={onChange}
-				name='phoneNumber'
-				type='tel'
-				/>
-			</label>
-			<label>Password:&nbsp;
-				<input
-				value={values.password}
-				onChange={onChange}
-				name='password'
-				type='password'
-				/>
-			</label>
-		</div>
-	</form>
+        <SignUpFormWrapper>
+            <img src={logo} id='logo'/>
+            <h1>Sign Up</h1>
+            <form className='form container' onSubmit={onSubmit}>
+                
+                <TextInput 
+                    onChange={onChange}
+                    value={values.username}
+                    name='username'
+                    type='text'
+                    error={errors.username}
+                    labelText='Username'
+                />
+                <TextInput
+                    onChange={onChange}
+                    value={values.phoneNumber}
+                    name='phoneNumber'
+                    type='tel'
+                    error={errors.phoneNumber}
+                    labelText='Phone'
+                />
+                <TextInput
+                    onChange={onChange}
+                    value={values.password}
+                    name='password'
+                    type='password'
+                    error={errors.password}
+                    labelText='Password'
+                />
+                
+                <Button
+                    children='Submit'
+                    variant={disabled ? 'disabled' : 'success'}
+                    size='normal'
+                />
+                {/* <button disabled={disabled}>submit</button> */}
+                
+            </form>
+        </SignUpFormWrapper>
     )
 }

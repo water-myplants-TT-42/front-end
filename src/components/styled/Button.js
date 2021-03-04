@@ -48,7 +48,7 @@ export const ButtonWrapper = styled.button`
 export default function Button(props) {
     const { onClick, children, variant, size, ...rest } = props
     return (
-        <ButtonWrapper {...rest} size={size} onClick={onClick} variant={variant}>
+        <ButtonWrapper {...rest} size={size} onClick={onClick} variant={variant} disabled={variant==='disabled'}>
             {children}
         </ButtonWrapper>
     )
