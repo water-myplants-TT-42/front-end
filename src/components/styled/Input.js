@@ -5,6 +5,8 @@ import InputLabel from './InputLabel'
 import { Theme } from './theme'
 
 const InputWrapper = styled.div`
+    width: ${Theme.inputWidth};
+
     input {
         border-radius: ${props => {
             switch (props.type) {
@@ -22,7 +24,7 @@ const InputWrapper = styled.div`
         font-size: ${Theme.fontSize};
         width: ${Theme.inputWidth};
         height: ${Theme.inputHeight};
-        padding: 0.25rem 0.5rem;
+        padding: auto 1.6rem;
         outline: none;
         margin-bottom: ${Theme.space}
 

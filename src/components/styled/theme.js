@@ -60,8 +60,10 @@ export const Theme = {
 
 
     // Spacing
-    space: `2rem`,          // Standard spacing between items
-    navBarSpace: `1rem`,    // Space between nav items
+    space: `2rem`,                  // Standard spacing between items
+    navBarSpace: `1rem`,            // Space between nav items
+    inputLabelPadding: `1.3rem`,    // Space between input labels and input left/right edges
+    inputLabelMargin: `0.4rem`,     // Space between input labels and top of input field
 
 
     // Nav Item Standards
