@@ -64,7 +64,7 @@ export const Theme = {
     navBarSpace: `1rem`,            // Space between nav items
     inputLabelPadding: `1.3rem`,    // Space between input labels and input left/right edges
     inputLabelMargin: `0.4rem`,     // Space between input labels and top of input field
-
+    inputFieldPadding: `1px 1.6rem`,// Space inside input field
 
     // Nav Item Standards
     navBarHeight: `7rem`,
