@@ -78,9 +78,11 @@ export default function LoginForm(props) {
 
         yup.reach(schema, name)
             .validate(value)
-            .then(isValid => {
-                setDisabled(!isValid)
-                setErrors(INITIAL_FORM_ERRORS)
+            .then(_ => {
+                setErrors({
+                    ...errors,
+                    [name]: ''
+                })
             })
             .catch(err => setErrors({ 
                 ...errors,
