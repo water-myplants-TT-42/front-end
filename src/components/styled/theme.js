@@ -6,8 +6,8 @@ export const Theme = {
     darkBgColor: `#828282`,
     mediumBgColor: `#e5e5e5`,
 
-    // // Sizes and Units
-    // borderRadius: `25px`,
+    // Sizes and Units
+    borderRadius: `25px`,
 
 
 
@@ -34,7 +34,7 @@ export const Theme = {
     buttonWidth: `20rem`,       // all other buttons
 
     medButtonWidth: `15rem`,    // buttons at the bottom of individual plant page only
-    navButtonWidth: `110rem`,   // nav buttons only
+    navButtonWidth: `11rem`,   // nav buttons only
 
     inputHeight: `5rem`,
     inputWidth: `35rem`,
@@ -57,6 +57,7 @@ export const Theme = {
     cardTitleFontSize: `2.2rem`,
     miniButtonFontSize: `2rem`,
     errorFontSize: `2rem`,
+    navBarTitleFontSize: `2.8rem`,
 
 
     // Spacing
@@ -78,9 +79,6 @@ export const Theme = {
     cardBackground: `#E0E0E0`,
     cardBorder: `1px solid #BDBDBD`,
     cardBoxShadow: `2px 2px 4px rgba(0, 0, 0, 0.25)`,
-    // Pixels so cards stay square
-    cardSizeSmall: `168px`,
-    cardSizeLarge: `222px`,
 
 
     // Modal Constants
