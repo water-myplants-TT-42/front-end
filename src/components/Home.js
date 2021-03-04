@@ -15,19 +15,12 @@ const StyledHome = styled.div`
 
     #logo {
         width: ${Theme.largeLogoSize};
-        height: auto;
+        height: ${Theme.largeLogoSize};
         margin: ${Theme.space} auto;
     }
 
     h1 {
         font-size: ${Theme.h1FontSize};
-        margin-bottom: ${Theme.space};
-    }
-
-    button {
-        width: ${Theme.buttonWidth};
-        height: ${Theme.buttonHeight};
-        font-size: ${Theme.fontSize};
         margin-bottom: ${Theme.space};
     }
 `
@@ -44,11 +37,13 @@ export default function Home(props) {
             <img src={logo} id='logo'/>
             <h1>Water My Plants</h1>
             <Button 
+                size='normal'
                 onClick={() => routeTo('/login')} 
                 variant='success'
                 children='Log In'
             />
             <Button 
+                size='normal'
                 onClick={() => routeTo('/signup')} 
                 variant='success'
                 children='Sign Up'

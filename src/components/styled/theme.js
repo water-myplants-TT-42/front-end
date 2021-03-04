@@ -17,16 +17,16 @@ export const Theme = {
     // Colors
     buttonGreen: `#66AD66`,
     buttonRed: `#EB5757`,
-    buttonGray: `828282`,
+    buttonGray: `#828282`,
 
-    inputGray: `E0E0E0`,
-    inputTextGray: `333333`,
+    inputGray: `#E0E0E0`,
+    inputTextGray: `#333333`,
 
-    borderGray: `BDBDBD`,
-    navBarGray: `F2F2F2`,
+    borderGray: `#BDBDBD`,
+    navBarGray: `#F2F2F2`,
 
-    textBlack: `000000`,
-    textWhite: `FFFFFF`,
+    textBlack: `#000000`,
+    textWhite: `#FFFFFF`,
 
 
     // Button and Input Fields
