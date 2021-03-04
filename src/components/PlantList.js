@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
 import { getPlantList, deletePlantRequest } from '../utils/requests';
+
+import Container from './styled/Container'
 import DeleteModal from './DeleteModal';
-import Card from './styled/Card';
-import plantImg from '../images/plant-image.png'
+import PlantCard from './PlantCard';
+
+const PlantListWrapper = styled(Container)`
+  border: 1px solid green;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`
 
 export default function PlantList(props) {
   const { userID, plantList, setPlantList, deletePlant } = props;
@@ -14,14 +24,14 @@ export default function PlantList(props) {
     getPlantList(userID).then(res => setPlantList(res.data))
   }, [userID, setPlantList])
 
-  const onClickDelete = ({ id, nickname }) => {
-    console.log('onClickDelete', id, nickname);
-    setToDelete({ id, nickname })
+  const onClickDelete = ({ plant_id, nickname }) => {
+    console.log('onClickDelete', plant_id, nickname);
+    setToDelete({ plant_id, nickname })
   }
 
   const confirmDelete = () => {
     if (toDelete) {
-      deletePlantRequest(toDelete.id, push);
+      deletePlantRequest(toDelete.plant_id, push);
       setPlantList(plantList.filter(plant => plant.plant_id !== toDelete.id))
       setToDelete(null);
     }
@@ -32,7 +42,7 @@ export default function PlantList(props) {
   }
 
   return (
-    <div className="plant-list-wrapper">
+    <PlantListWrapper maxWidth="768px">
       <DeleteModal 
         isOpen={!!toDelete}
         confirm={confirmDelete}
@@ -41,10 +51,10 @@ export default function PlantList(props) {
 
       />
       {plantList.map(plant => (
-        <Card 
+        <PlantCard 
           key={plant.plant_id} 
-          title={plant.nickname}
-          image={plant.image || plantImg}
+          plant={plant}
+          deletePlant={onClickDelete}
         />
         // <div className="plant-card" key={plant.plant_id}>
         //   <Link to={`/plantlist/${plant.plant_id}`}><h3>{plant.nickname}</h3></Link>
@@ -57,6 +67,6 @@ export default function PlantList(props) {
         //   {/* Delete button needs functionality...modal window to confirm?? */}
         // </div>
       ))}
-    </div>
+    </PlantListWrapper>
   )
 }

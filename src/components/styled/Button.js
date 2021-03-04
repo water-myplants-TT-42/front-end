@@ -35,7 +35,7 @@ export const ButtonWrapper = styled.button`
     }};
     height: ${props => {
         switch(props.size) {
-            case 'mini':    return props.heme.miniButtonHeight
+            case 'mini':    return props.theme.miniButtonHeight
             default:        return props.theme.buttonHeight
         }
     }};
