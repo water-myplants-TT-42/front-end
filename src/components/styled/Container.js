@@ -15,11 +15,6 @@ const ContainerWrapper = styled.div`
         font-size: ${props => props.theme.h1FontSize};
         margin-bottom: ${props => props.theme.space};
     }
-
-    p {
-        font-size: ${props => props.theme.fontSize};
-        margin-bottom: ${props => props.theme.space};
-    }
 `
 
 export default function Container(props) {
