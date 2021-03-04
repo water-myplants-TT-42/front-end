@@ -52,7 +52,7 @@ const NavWrapper = styled.div`
     }
 `
 
-export default function Navbar(props) {
+export default function NavBar(props) {
     
     const { maxWidth, className, isAuthenticated } = props
     const history = useHistory()

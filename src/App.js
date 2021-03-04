@@ -12,7 +12,7 @@ import LoginForm from './components/LoginForm';
 import PlantForm from './components/PlantForm';
 import PlantList from './components/PlantList';
 import Plant from './components/Plant';
-import Navbar from './components/Navbar'
+import NavBar from './components/NavBar'
 import PrivateRoute from './components/PrivateRoute';
 import { signupRequest, loginRequest, editUserRequest } from './utils/requests';
 
@@ -30,7 +30,7 @@ function App() {
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <div className="App">
-        <Navbar />
+        <NavBar />
         <Switch>
           <PrivateRoute path="/plantlist/:id">
             <Plant deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />
