@@ -79,6 +79,8 @@ export const Theme = {
     cardBackground: `#E0E0E0`,
     cardBorder: `1px solid #BDBDBD`,
     cardBoxShadow: `2px 2px 4px rgba(0, 0, 0, 0.25)`,
+    cardSizeSmall: '16.9rem',
+    cardSizeLarge: '22.2rem',
 
 
     // Modal Constants
