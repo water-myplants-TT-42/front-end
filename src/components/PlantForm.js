@@ -158,7 +158,7 @@ export default function PlantForm(props) {
                     values={[freqNumber, freqTimes]}
                     onChange={onChange}
                     error={errors.h2oFrequency}
-                    labelTexts={['Water', `${freqNumber == 1 ? 'time' : 'times'} per`]}
+                    labelTexts={['Water', `${freqNumber === 1 ? 'time' : 'times'} per`]}
                     numMax={10}
                 />
                 

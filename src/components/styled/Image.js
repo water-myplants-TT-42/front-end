@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import logo from '../../icons/plant-outline-white.svg'
 
-const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;

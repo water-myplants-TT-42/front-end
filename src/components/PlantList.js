@@ -7,11 +7,17 @@ import { getPlantList, deletePlantRequest } from '../utils/requests';
 import Container from './styled/Container'
 import DeleteModal from './DeleteModal';
 import PlantCard from './PlantCard';
+import Button from './styled/Button';
 
 const PlantListWrapper = styled(Container)`
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+
+  h4 {
+    font-size: ${props => props.theme.fontSize};
+    margin-bottom: ${props => props.theme.space};
+  }
 `
 
 export default function PlantList(props) {
@@ -46,13 +52,14 @@ export default function PlantList(props) {
         isOpen={!!toDelete}
         confirm={confirmDelete}
         cancel={cancelDelete}
-        text={toDelete ? `Delete ${toDelete.nickname}` : 'Delete this plant?'}
+        text={toDelete ? `Delete '${toDelete.nickname}'?` : 'Delete this plant?'}
 
       />
       {plantList.length === 0 && (
-        <div>
-          You don't have any plants!
-        </div>
+        <Container>
+          <h4>You don't have any plants!</h4>
+          <Button onClick={() => push('/plantform')}>Add One Now!</Button>
+        </Container>
       )}
       {plantList.length !== 0 && plantList.map(plant => (
         <PlantCard 

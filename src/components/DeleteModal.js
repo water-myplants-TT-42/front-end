@@ -16,7 +16,6 @@ const DeleteModalWrapper = styled.div`
     align-items: center;
 
     & > div {
-        border: 1px solid red;
         background-color: white;
         text-align: center;
         padding: 1rem;
@@ -31,6 +30,10 @@ const DeleteModalWrapper = styled.div`
         h4 {
             margin-bottom: 2rem;
             font-size: 2rem;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            word-break: break-all;
+            hyphens: auto;
         }
 
         & > div {
