@@ -17,6 +17,23 @@ const dummyData = {
   h2oFrequency: '1 time/week',
 }
 
+const PlantWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  h1 {
+      font-size: ${props => props.theme.h1FontSize};
+      margin-bottom: ${props => props.theme.space};
+  }
+
+  p {
+    font-size: ${props => props.theme.fontSize};
+    margin-bottom: ${props => props.theme.space};
+  }
+`
+
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
@@ -62,7 +79,7 @@ export default function Plant(props) {
   }
 
   return (
-    <Container className='plant-wrapper' maxWidth='600px'>
+    <PlantWrapper className='plant-wrapper'>
 
       <DeleteModal 
         isOpen={isDeleting}
@@ -93,6 +110,6 @@ export default function Plant(props) {
         />
       </ButtonsWrapper>
 
-    </Container>
+    </PlantWrapper>
   )
 }
