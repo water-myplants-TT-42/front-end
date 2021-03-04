@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { getPlantList, deletePlantRequest } from '../utils/requests';
 import DeleteModal from './DeleteModal';
+import Card from './styled/Card';
+import plantImg from '../images/plant-image.png'
 
 export default function PlantList(props) {
   const { userID, plantList, setPlantList, deletePlant } = props;
@@ -10,7 +12,7 @@ export default function PlantList(props) {
 
   useEffect(() => {
     getPlantList(userID).then(res => setPlantList(res.data))
-  }, [])
+  }, [userID, setPlantList])
 
   const onClickDelete = ({ id, nickname }) => {
     console.log('onClickDelete', id, nickname);
@@ -39,16 +41,21 @@ export default function PlantList(props) {
 
       />
       {plantList.map(plant => (
-        <div className="plant-card" key={plant.plant_id}>
-          <Link to={`/plantlist/${plant.plant_id}`}><h3>{plant.nickname}</h3></Link>
-          <p>{plant.h2oFrequency}</p>
-          <button 
-            className='delete-button'
-            onClick={_ => onClickDelete({ id: plant.plant_id, nickname: plant.nickname })}
-            >Delete
-          </button>
-          {/* Delete button needs functionality...modal window to confirm?? */}
-        </div>
+        <Card 
+          key={plant.plant_id} 
+          title={plant.nickname}
+          image={plant.image || plantImg}
+        />
+        // <div className="plant-card" key={plant.plant_id}>
+        //   <Link to={`/plantlist/${plant.plant_id}`}><h3>{plant.nickname}</h3></Link>
+        //   <p>{plant.h2oFrequency}</p>
+        //   <button 
+        //     className='delete-button'
+        //     onClick={_ => onClickDelete({ id: plant.plant_id, nickname: plant.nickname })}
+        //     >Delete
+        //   </button>
+        //   {/* Delete button needs functionality...modal window to confirm?? */}
+        // </div>
       ))}
     </div>
   )
