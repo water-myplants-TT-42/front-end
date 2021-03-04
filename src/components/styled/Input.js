@@ -24,6 +24,7 @@ const InputWrapper = styled.div`
         height: ${Theme.inputHeight};
         padding: 0.25rem 0.5rem;
         outline: none;
+        margin-bottom: ${Theme.space}
 
         &:focus {
             border: ${(props) => (
