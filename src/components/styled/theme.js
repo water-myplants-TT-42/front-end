@@ -39,6 +39,10 @@ export const Theme = {
     inputHeight: `5rem`,
     inputWidth: `35rem`,
     inputErrorBorder: `2px solid #FF0000`,
+    
+    // Special inputs
+    numberInputWidth: `8rem`,
+    dropdownWidth: `13rem`,
 
 
     // Mini Buttons
@@ -92,4 +96,8 @@ export const Theme = {
     // Logo sizes
     smallLogoSize: `10rem`,
     largeLogoSize: `18.7rem`,
+
+    // Image sizes
+    smallImageSize: `15rem`,
+    largeImageSize: `30rem`,
 }

@@ -4,11 +4,8 @@ import styled from 'styled-components'
 const FormWrapper = styled.form`
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-
-    & > div{
-        margin-bottom: 10px;
-    }
 `
 
 export default function Form(props) {

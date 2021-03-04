@@ -3,10 +3,12 @@ import { useHistory, useLocation } from 'react-router-dom';
 import * as yup from 'yup';
 import { addPlantRequest, editPlantRequest } from '../utils/requests';
 
-import Button from './styled/Button';
 import Container from './styled/Container';
 import Form from './styled/Form';
-import TextInput from './styled/Input';
+import Image from './styled/Image';
+import TextInput, { WaterInput } from './styled/Input';
+import Button from './styled/Button';
+import image from '../images/plant-image.png';
 
 const INITIAL_PLANT_FORM_STATE = {
     nickname: '',
@@ -28,9 +30,9 @@ const parseFrequency = (h2oFrequency) => {
 
 // Form Schema
 const formSchema = yup.object().shape({
-    nickname: yup.string().required('Your plant needs a name!'),
-    species: yup.string().required('What species is your plant?'),
-    h2oFrequency: yup.string().required('How often do you need to water it?') 
+    nickname: yup.string().required('required'),
+    species: yup.string().required('required'),
+    h2oFrequency: yup.string().required('required') 
 })
 
 export default function PlantForm(props) {
@@ -47,7 +49,7 @@ export default function PlantForm(props) {
 
     const isEditing = !!thisPlant.nickname.length; // Coerce to boolean to check if editing
 
-    const change = (evt) => {
+    const onChange = (evt) => {
         const { name, value } = evt.target
 
         if (name === 'h2oNumber') {
@@ -90,7 +92,7 @@ export default function PlantForm(props) {
         }
     }, [plantToEdit])
 
-    const submit = (evt) => {
+    const onSubmit = (evt) => {
         evt.preventDefault()
 
         formSchema.validate(values)
@@ -118,42 +120,42 @@ export default function PlantForm(props) {
 
     return (
         <Container maxWidth="600px">
-            <h2>{isEditing ? 'Edit' : 'Create'} Plant</h2>
-            <Form onSubmit={submit}>
+
+            <h1>{isEditing ? 'Edit' : 'New'} Plant</h1>
+            <Image size='15rem'/>
+            
+            <Form onSubmit={onSubmit}>
+
                 <TextInput 
                     name="nickname"
                     labelText="Nickname"
-                    onChange={change}
+                    onChange={onChange}
                     value={values.nickname}
                     error={errors.nickname}
                 />
-                {/* <br /> */}
-                {/* <label htmlFor="species">Species:{' '}</label>
-                <input id="species" name="species" value={values.species} onChange={change} />
-                <br /> */}
-
                 <TextInput 
                     name="species"
                     labelText="Species"
-                    onChange={change}
+                    onChange={onChange}
                     value={values.species}
                     error={errors.species}
                 />
                 
-                <label htmlFor="h2oNumber">Water:{' '}</label>
-                <input id="h2oNumber" name="h2oNumber" type="number" min={1} step={1} value={freqNumber} onChange={change}/>
-                <label htmlFor="h2oTimes">How often:{' '}</label>
-                <select name="h2oTimes" id="h2oTimes" value={freqTimes} onChange={change}>
-                    <option value="daily">Daily</option>
-                    <option value="weekly">Weekly</option>
-                    <option value="monthly">Monthly</option>
-                </select>
-                <br />
+                <WaterInput
+                    names={['h2oNumber', 'h2oTimes']}
+                    values={[freqNumber, freqTimes]}
+                    onChange={onChange}
+                    error={errors.h2oFrequency}
+                    labelTexts={['Water', `${freqNumber == 1 ? 'time' : 'times'} per`]}
+                    numMax={10}
+                />
+                
                 <Button
-                    variant={!isDisabled ? 'success' : ''}
-                    type="submit" 
-                    disabled={isDisabled}>{isEditing ? 'Edit' : 'Create'} Plant
-                </Button>
+                    children='Save'
+                    variant={isDisabled ? 'disabled' : 'success'}
+                    size='normal' 
+                />
+
             </Form>
         </Container>
     )

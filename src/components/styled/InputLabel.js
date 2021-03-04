@@ -19,7 +19,7 @@ const InputLabelWrapper = styled.div`
 `
 
 export default function InputLabel(props) {
-    const { labelText, name, error } = props
+    const { labelText, name, error, inline } = props
 
     return (
         <InputLabelWrapper>
