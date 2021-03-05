@@ -69,11 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-### Attribution
-
-Icons made by https://www.freepik.com
-
-### Project explanation
+## Project explanation
 
 Components
 
@@ -123,4 +119,9 @@ Components
         InputLabel.js
             Sets basic css formatting and props for input labels
 
+## Attribution
 
+Icons made by [Freepik](https://www.freepik.com "Freepik") from [www.flaticon.com](https://www.flaticon.com/ "Flaticon")
+
+[Plant Icon](https://www.flaticon.com/free-icon/plant_628324)
+[User Icon](https://www.flaticon.com/free-icon/user_1946429)
