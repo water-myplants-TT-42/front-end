@@ -106,7 +106,7 @@ export default function NavBar(props) {
                     <img 
                         src={user} 
                         id='user' 
-                        onClick={() => routeTo('/edituser')} 
+                        onClick={() => routeTo('/user')} 
                     />
                 </div>
             </NavWrapper>

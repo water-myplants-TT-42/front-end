@@ -8,6 +8,7 @@ import GlobalStyle from './components/styled/Global';
 import Home from './components/Home';
 import SignUpForm from './components/SignUpForm';
 import EditUserForm from './components/EditUserForm';
+import User from './components/User';
 import LoginForm from './components/LoginForm';
 import PlantForm from './components/PlantForm';
 import PlantList from './components/PlantList';
@@ -41,6 +42,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/plantform">
             <PlantForm userID={userID} />
+          </PrivateRoute>
+          <PrivateRoute path="/user">
+            <User userID={userID} />
           </PrivateRoute>
           <PrivateRoute path="/edituser">
             <EditUserForm submit={editUserRequest} userID={userID} />
