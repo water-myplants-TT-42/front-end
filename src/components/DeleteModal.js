@@ -19,9 +19,11 @@ const DeleteModalWrapper = styled.div`
         background-color: white;
         text-align: center;
         padding: 1rem;
+        padding-top: 4rem;
         width: ${props => props.theme.modalSize};
         height: ${props => props.theme.modalSize};
         max-width: 400px;
+        border: ${props => props.theme.cardBorder};
 
         display: flex;
         flex-direction: column;
