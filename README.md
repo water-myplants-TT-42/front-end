@@ -72,3 +72,55 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Attribution
 
 Icons made by https://www.freepik.com
+
+### Project explanation
+
+Components
+
+    Home.js
+
+    This is a basic home page which prompts the user to either log in to an already existing account or to sign up in order to access the other routes within the website
+
+    LoginForm.js/SignUpForm.js/EditUserForm.js/PlantForm.js
+
+    These are all forms structured to take inputs for user data(login/signup/edituser) and Plant data(plant).
+    The values taken from these inputs are then posted into the backend.
+
+    Navbar.js
+
+    The navbar allows the user to quickly navigate between routes.
+    These routes change based off of conditional rendering checking if the userID === null, else it considers the user authenticated.
+
+    PlantCard.js
+
+    Returns styled components which take in a plant_id and populate PlantList
+
+    DeleteModal.js
+
+    Returns a function that will handle a click event and delete a plant from PlantList. This removes the card from display and the plant_id which is attached to the user data.
+
+    Plant.js
+
+    This is a file that consists of dummy data which was used during display testing. This will be deleted when the backend is implemented.
+
+    PlantList.js
+
+    Imports plantcard.js/deletemodal.js and populates a container with plants based off of the plant_id(s) which are connected to a user's information. You can view/delete plants from this list. Plants are added to this list by PlantForm.js.
+
+    Styled
+        theme.js
+            Set constant values for css across the entire app. Colors, image sizes, button sizes, etc.
+        Global.js
+            Removes defaults and sets standards for sizing and formatting throughout the app.
+        Container.js
+            Sets basic css formatting and props for containers
+        Form.js
+            Sets basic css formatting and props for forms
+        Image.js
+            Sets basic css formatting and props for images
+        Input.js
+            Sets basic css formatting and props for inputs
+        InputLabel.js
+            Sets basic css formatting and props for input labels
+
+
