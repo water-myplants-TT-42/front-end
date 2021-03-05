@@ -7,11 +7,24 @@ import { getPlantList, deletePlantRequest } from '../utils/requests';
 import Container from './styled/Container'
 import DeleteModal from './DeleteModal';
 import PlantCard from './PlantCard';
+import Button from './styled/Button';
 
 const PlantListWrapper = styled(Container)`
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: wrap;
+`
+
+const EmptyListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  p {
+    font-size: ${props => props.theme.fontSize};
+    margin-bottom: ${props => props.theme.space};
+  }
 `
 
 export default function PlantList(props) {
@@ -50,9 +63,15 @@ export default function PlantList(props) {
 
       />
       {plantList.length === 0 && (
-        <div>
-          You don't have any plants!
-        </div>
+        <EmptyListWrapper>
+          <p>You don't have any plants!</p>
+          <Button 
+            children='Add Plant'
+            variant='success'
+            size='normal'
+            onClick={() => push('/plantform')}
+          />
+        </EmptyListWrapper>
       )}
       {plantList.length !== 0 && plantList.map(plant => (
         <PlantCard 
