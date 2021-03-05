@@ -70,7 +70,9 @@ export default function Card(props) {
 
     return (
         <CardWrapper>
-            <Image src={plant.image}/>
+            <Link to={`/plantlist/${plant.plant_id}`}>
+                <Image src={plant.image}/>
+            </Link>
             <CardContent>
                 <CardTitle>
                     <Link to={`/plantlist/${plant.plant_id}`}>
