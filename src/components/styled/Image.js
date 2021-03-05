@@ -28,7 +28,7 @@ export default function Image(props) {
     return (
         <ImageWrapper size={size} {...rest} src={!!src} >
             {
-                src 
+                !!src 
                     ? <img src={src} alt={alt} /> 
                     : <img src={logo} alt='logo' />
             }
