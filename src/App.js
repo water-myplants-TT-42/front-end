@@ -8,6 +8,7 @@ import GlobalStyle from './components/styled/Global';
 import Home from './components/Home';
 import SignUpForm from './components/SignUpForm';
 import EditUserForm from './components/EditUserForm';
+import User from './components/User';
 import LoginForm from './components/LoginForm';
 import PlantForm from './components/PlantForm';
 import PlantList from './components/PlantList';
@@ -34,13 +35,16 @@ function App() {
         <NavBar userID={userID}/>
         <Switch>
           <PrivateRoute path="/plantlist/:id">
-            <Plant deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />
+            <Plant userID={userID} deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />
           </PrivateRoute>
           <PrivateRoute path="/plantlist">
             <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />
           </PrivateRoute>
           <PrivateRoute path="/plantform">
             <PlantForm userID={userID} />
+          </PrivateRoute>
+          <PrivateRoute path="/user">
+            <User userID={userID} setUserID={setUserID} />
           </PrivateRoute>
           <PrivateRoute path="/edituser">
             <EditUserForm submit={editUserRequest} userID={userID} />

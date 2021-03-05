@@ -48,7 +48,7 @@ const ButtonsWrapper = styled.div`
 `
 
 export default function Plant(props) {
-  const { plantList, setPlantList } = props;
+  const { plantList, setPlantList, userID } = props;
   const history = useHistory();
   // delete useState when connected to backend/pass plant itself as prop in place of plantData
   const params = useParams();
@@ -56,8 +56,13 @@ export default function Plant(props) {
   const [plant, setPlant] = useState(dummyData);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  useEffect(()=>{
-    getPlant(params.id).then(res => setPlant(res))
+  useEffect(() => {
+    if (userID == null) {
+      history.push('/')
+    }
+    else {
+      getPlant(params.id).then(res => setPlant(res))
+    }
   }, [])
 
   const onClickDelete = () => {

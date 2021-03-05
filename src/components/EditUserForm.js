@@ -51,6 +51,12 @@ export default function EditUserForm(props) {
     const [disabled, setDisabled] = useState(true)
     const { push } = useHistory();
 
+    useEffect(() => {
+        if (userID == null) {
+            push('/')
+        }
+    })
+
     const onSubmit = evt => {
         evt.preventDefault();
         schema.validate(values)
