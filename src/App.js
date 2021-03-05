@@ -31,7 +31,7 @@ function App() {
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
       <div className="App">
-        <NavBar />
+        <NavBar userID={userID}/>
         <Switch>
           <PrivateRoute path="/plantlist/:id">
             <Plant deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />

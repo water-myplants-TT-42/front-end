@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import user from '../icons/user-icon.svg'
 import logo from '../icons/plant-color.svg'
-import Button, { ButtonWrapper } from './styled/Button'
+import Button from './styled/Button'
 
 const NavWrapper = styled.div`
     height: ${props => props.theme.navBarHeight};
@@ -54,38 +54,62 @@ const NavWrapper = styled.div`
 
 export default function NavBar(props) {
     
-    const { maxWidth, className, isAuthenticated } = props
+    const { maxWidth, className, userID } = props
     const history = useHistory()
 
     const routeTo = (location) => {
         history.push(location)
     }
-
-    return (
-        <NavWrapper maxWidth={maxWidth} className={className}>
-            <div id='nav-logo' onClick={() => routeTo('/plantlist')}>
-                <img src={logo} id='logo' />
-                <h3>Water My Plants</h3>
-            </div>
-            <div id='nav-buttons'>
-                <Button
-                    children='List'
-                    variant='nav'
-                    size='nav'
-                    onClick={() => routeTo('/plantlist')} 
+    if (userID === null ){
+        return(
+            <NavWrapper maxWidth={maxWidth} className={className}>
+                <div id='nav-logo' onClick={() => routeTo('/')}>
+                    <img src={logo} id='logo' />
+                    <h3>Water My Plants</h3>
+                </div>
+                <div id='nav-buttons'>
+                    <Button
+                        children='Log In'
+                        variant='nav'
+                        size='nav'
+                        onClick={() => routeTo('/login')} 
+                        />
+                    <Button 
+                        children='Sign Up'
+                        variant='nav'
+                        size='nav'
+                        onClick={() => routeTo('/signup')}
+                        />
+                </div>
+            </NavWrapper>
+        )
+    } else {
+        return (
+            <NavWrapper maxWidth={maxWidth} className={className}>
+                <div id='nav-logo' onClick={() => routeTo('/plantlist')}>
+                    <img src={logo} id='logo' />
+                    <h3>Water My Plants</h3>
+                </div>
+                <div id='nav-buttons'>
+                    <Button
+                        children='List'
+                        variant='nav'
+                        size='nav'
+                        onClick={() => routeTo('/plantlist')} 
+                        />
+                    <Button 
+                        children='+ New'
+                        variant='nav'
+                        size='nav'
+                        onClick={() => routeTo('/plantform')}
+                        />
+                    <img 
+                        src={user} 
+                        id='user' 
+                        onClick={() => routeTo('/edituser')} 
                     />
-                <Button 
-                    children='+ New'
-                    variant='nav'
-                    size='nav'
-                    onClick={() => routeTo('/plantform')}
-                    />
-                <img 
-                    src={user} 
-                    id='user' 
-                    onClick={() => routeTo('/edituser')} 
-                />
-            </div>
-        </NavWrapper>
-    )
+                </div>
+            </NavWrapper>
+        )
+    }
 }
