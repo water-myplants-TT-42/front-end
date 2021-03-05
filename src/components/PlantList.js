@@ -25,8 +25,14 @@ export default function PlantList(props) {
   const [toDelete, setToDelete] = useState(null);
   const { push } = useHistory();
 
+
   useEffect(() => {
-    getPlantList(userID).then(res => setPlantList(res.data))
+    if (userID == null) {
+      push('/')
+    }
+    else {
+      getPlantList(userID).then(res => setPlantList(res.data))
+    }
   }, [userID, setPlantList])
 
   const onClickDelete = ({ plant_id, nickname }) => {

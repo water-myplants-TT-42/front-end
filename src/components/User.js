@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 
@@ -24,7 +24,14 @@ const UserWrapper = styled.div`
 `
 
 export default function User(props) {
+    const { userID } = props;
     const history = useHistory()
+
+    useEffect(() => {
+        if (userID == null) {
+            history.push('/')
+        }
+    }, [])
 
     const clickLogout = () => {
 

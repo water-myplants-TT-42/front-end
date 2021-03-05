@@ -56,6 +56,12 @@ export default function PlantForm(props) {
     const [isDisabled, setIsDisabled] = useState(true);
     const { push } = useHistory();
 
+    useEffect(() => {
+        if (userID == null) {
+            push('/')
+        }
+    }, [])
+
     // Utility to keep number and dropbox in sync
     const [freqNumber, freqTimes] = parseFrequency(values.h2oFrequency)
 

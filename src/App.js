@@ -25,7 +25,7 @@ const deletePlantRequest = (plantId) => {
 function App() {
   const storedUserID = localStorage.getItem('userID');
   const [plantList, setPlantList] = useState([]);
-  const [userID, setUserID] = useState(storedUserID ? storedUserID : null);
+  const [userID, setUserID] = useState(null);
   console.log('userID:', userID);
 
   return (
@@ -35,7 +35,7 @@ function App() {
         <NavBar userID={userID}/>
         <Switch>
           <PrivateRoute path="/plantlist/:id">
-            <Plant deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />
+            <Plant userID={userID} deletePlant={deletePlantRequest} plantList={plantList} setPlantList={setPlantList} />
           </PrivateRoute>
           <PrivateRoute path="/plantlist">
             <PlantList userID={userID} plantList={plantList} setPlantList={setPlantList} deletePlant={deletePlantRequest} />
