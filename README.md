@@ -124,4 +124,5 @@ Components
 Icons made by [Freepik](https://www.freepik.com "Freepik") from [www.flaticon.com](https://www.flaticon.com/ "Flaticon")
 
 [Plant Icon](https://www.flaticon.com/free-icon/plant_628324)
+
 [User Icon](https://www.flaticon.com/free-icon/user_1946429)
