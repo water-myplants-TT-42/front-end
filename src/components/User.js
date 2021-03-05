@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 
 import logo from '../icons/plant-color.svg'
-import Button from './styled/Button'
+import Button, { ButtonWrapper } from './styled/Button'
 
 const UserWrapper = styled.div`
     display: flex;
@@ -20,6 +20,12 @@ const UserWrapper = styled.div`
         width: ${props => props.theme.smallLogoSize};
         height: ${props => props.theme.smallLogoSize};
         margin: ${props => props.theme.space} auto;
+    }
+
+    ${ButtonWrapper}#logout {
+        color: ${props => props.theme.buttonGray};
+        border: 2px solid ${props => props.theme.buttonGray};
+        background-color: white;
     }
 `
 
@@ -51,7 +57,7 @@ export default function User(props) {
                 onClick={() => history.push('edituser')}
             />
 
-            <Button 
+            <Button id='logout'
                 children='Log Out'
                 variant='success'
                 size='normal'

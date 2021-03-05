@@ -47,10 +47,21 @@ export const ButtonWrapper = styled.button`
     }};
 
     &:hover {
-        transform: scale(1.1);
+        transform: ${props => {
+            switch (props.variant) {
+                case 'disabled': return 'none'
+                default: return 'scale(1.1)'
+            }
+        }};
         transition: all 0.5s ease-in-out;
     }
     transition: all 0.5s ease-in-out;
+
+    pointer-events: ${props => {
+        switch(props.variant) {
+            case 'disabled': return 'none'
+        }
+    }};
 `
 
 export default function Button(props) {
