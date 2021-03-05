@@ -83,7 +83,7 @@ export default function Plant(props) {
 
       <DeleteModal 
         isOpen={isDeleting}
-        text={`Delete ${plant.nickname}?`}
+        text={`Are you sure you want to delete ${plant.nickname}?`}
         confirm={confirmDelete}
         cancel={cancelDelete}
       />

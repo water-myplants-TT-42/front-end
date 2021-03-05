@@ -27,12 +27,9 @@ const DeleteModalWrapper = styled.div`
         flex-direction: column;
         justify-content: space-between;
 
-        h4 {
+        p {
             margin-bottom: 2rem;
-            font-size: 2rem;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            word-break: break-all;
+            font-size: ${props => props.theme.fontSize};
             hyphens: auto;
         }
 
@@ -65,10 +62,10 @@ export default function DeleteModal(props) {
             id="delete-modal"
         >
             <div>
-                <h4>{text}</h4>
+                <p>{text}</p>
                 <div>
-                    <Button size="small" variant="success" id="cancel-delete" onClick={handleClick}>Cancel</Button>
-                    <Button size="small" variant="danger" id="confirm-delete" onClick={handleClick}>Confirm</Button>
+                    <Button size="mini" variant="success" id="cancel-delete" onClick={handleClick}>Cancel</Button>
+                    <Button size="mini" variant="danger" id="confirm-delete" onClick={handleClick}>Confirm</Button>
                 </div>
             </div>
         </DeleteModalWrapper>
