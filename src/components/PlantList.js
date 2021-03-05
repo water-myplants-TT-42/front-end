@@ -58,7 +58,7 @@ export default function PlantList(props) {
       {plantList.length === 0 && (
         <Container>
           <h4>You don't have any plants!</h4>
-          <Button onClick={() => push('/plantform')}>Add One Now!</Button>
+          <Button onClick={() => push('/plantform')}>Add Plant</Button>
         </Container>
       )}
       {plantList.length !== 0 && plantList.map(plant => (
