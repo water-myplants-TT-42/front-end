@@ -24,7 +24,7 @@ const UserWrapper = styled.div`
 `
 
 export default function User(props) {
-    const { userID } = props;
+    const { userID, setUserID } = props;
     const history = useHistory()
 
     useEffect(() => {
@@ -33,8 +33,10 @@ export default function User(props) {
         }
     }, [])
 
-    const clickLogout = () => {
-
+    const clickLogout = evt => {
+        localStorage.removeItem('userID')
+        setUserID(null)
+        history.push('/')
     }
 
     return (

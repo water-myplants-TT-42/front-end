@@ -44,7 +44,7 @@ function App() {
             <PlantForm userID={userID} />
           </PrivateRoute>
           <PrivateRoute path="/user">
-            <User userID={userID} />
+            <User userID={userID} setUserID={setUserID} />
           </PrivateRoute>
           <PrivateRoute path="/edituser">
             <EditUserForm submit={editUserRequest} userID={userID} />
